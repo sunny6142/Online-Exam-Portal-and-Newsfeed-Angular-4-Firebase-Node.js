@@ -1,0 +1,104 @@
+
+header.mdl-layout__header {
+    background: #fff;
+    display: block;
+    width: 100%;
+    height: auto;
+  border-radius: 2px 2px 2px 2px;
+  color: #000;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-box-shadow: 0 1px 2px #777;
+  -moz-box-shadow: 0 2px 1px #777;
+  box-shadow: 0 0 7px 1px rgba(0.1, 0.1, 0.1, 0.2);
+  margin-top: 0px;
+  margin-bottom: 2px;
+  position: relative;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  z-index: 900;
+  }
+  div.mdl-layout__header-row {
+    height: 90px;
+    min-width:  800px;
+    border: 1px double gray;
+    box-shadow: 0 0 4px 1px rgba(0.1, 0.1, 0.1, 0.2);
+  }
+  main.mdl-layout__content{
+    background: white;
+  }
+  table tbody td, table {
+    padding: 0px;
+  }
+  
+  nav.mdl-navigation a.mdl-navigation__link {
+    color: black;
+  }
+
+  .example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
+  .example-selected-value {
+    margin: 15px 0;
+  }
+  .button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .selectquebutton{
+    margin: 5px;
+    font-weight: 500;
+  }
+
+  .mdl-card__supporting-text{
+    font-size: 20px;
+    color: #222;
+    font-family: 'Proxima Nova Soft','Helvetica Neue',sans-serif;
+    line-height: 1.618;
+    word-wrap: break-word;
+    text-shadow: 0px 0.5px 0 #777;
+  }
+
+  .example-radio-button{
+    font-size: 20px;
+    color: #8D6E63;
+    font-family: 'Proxima Nova Soft','Helvetica Neue',sans-serif;
+    line-height: 1.618;
+    word-wrap: break-word;
+  }
+
+  
+.question_input {
+  width: 100%;
+  min-width: 150px;
+  height: 95px;
+  padding: 5px;
+  margin-bottom: 30px;
+}
+.question_field{
+  margin-bottom: -12px;
+  padding: 5px;
+  height: 90px;
+}
+.chotaspan{
+  font-size: 20px;
+   background-color:#ff4081;
+  margin-top:1px ;
+  width: 100%;
+  height: auto;
+}
+.form-group{
+  margin: 5px;
+}

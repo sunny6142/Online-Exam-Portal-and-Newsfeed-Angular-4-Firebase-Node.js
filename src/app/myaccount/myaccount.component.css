@@ -1,0 +1,156 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+  color: black;
+}
+
+.mw{
+    min-width: 300px;
+}
+
+.demo-layout-transparent {
+    background: white ; /*url('../assets/demos/transparent.jpg') center / cover; */
+  }
+  .demo-layout-transparent .mdl-layout__header,
+  .demo-layout-transparent .mdl-layout__drawer-button {
+    /* This background is dark, so we set text to white. Use 87% black instead if
+       your background is light. */
+    color: black;
+  }
+
+  .demo-card-wide{
+    -ms-transform: scale(0.9, 0.9); /* IE 9 */
+    -webkit-transform: scale(0.9, 0.9); /* Safari */
+    transform: scale(0.9, 0.9);
+  }
+  
+  .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 136px;
+    background: orange; /*url('https://gradestack.com/images/groupFiles/6c7558ae2d9db49a6ffec566f669734a.png') center / cover; 
+  */
+  }
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+  .example-button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+main.mdl-layout__content{
+ 
+}
+main {
+  background:url('https://s3.envato.com/files/236046726/img%20prev.jpg')
+}
+div.demo-card-wide{
+    float: left;
+    margin-right: 0px;
+    margin-top: -15px;
+    margin-left: -17px;
+}
+.mdl-cell--9-col, .mdl-cell--9-col-desktop.mdl-cell--9-col-desktop {
+    margin: 0px;
+    width: calc(71%);
+    margin-top: 10px;
+  }
+.example-form {
+  min-width: 150px;
+  max-width: 100%;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.searchimage{
+  height:25px;
+}
+
+div.subtittle{
+  text-align: right;
+  padding: 11px;
+  font-size: 20px;
+  font-family: initial;
+  color: #000;
+  text-shadow: 1px 1px 3px #bbb;
+}
+div.subheader{
+  background: darkcyan;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+ 
+}
+
+div.subsec3{
+  margin-top: 11px;
+}
+
+input.search{
+  color: #814F4F;
+}
+
+/* Structure */
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+  .example-header {
+    min-height: 56px;
+    max-height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 8px 24px 0;
+    font-size: 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid transparent;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    flex-grow: 1;
+    margin-top: 8px;
+  }
+  
+  .example-no-results {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+    font-size: 12px;
+    font-style: italic;
+  }
+  
+  /** Selection styles */
+  .example-selection-header {
+    font-size: 18px;
+  }
+  
+  .mat-column-select {
+    max-width: 54px;
+  }
+  
+  .mat-row:hover, .example-selected-row {
+    background: #f5f5f5;
+  }
+  
+  .mat-row:active, .mat-row.example-selected-row {
+    background: #eaeaea;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  

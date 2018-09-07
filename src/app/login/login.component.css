@@ -1,0 +1,44 @@
+.gradient{
+    background: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
+}
+#lock {
+    width:30%;
+    margin: 1.5em auto 2em auto;
+    display:block;
+}
+
+main{
+    background:url('https://s3.envato.com/files/236046726/img%20prev.jpg')
+}
+
+#fb {
+    background:#3B5998 url('assets/images/facebook.svg') no-repeat 14px 6px;
+    background-size: 47px;
+    color:#fff;
+}
+
+#google {
+    border: 1px solid #95989A;
+    background: #fff  url('assets/images/google.svg') no-repeat 25px;
+    background-size: 25px;
+}
+
+#email {
+    background: #ECECEC  url('assets/images/email.svg') no-repeat 25px;
+    background-size: 25px;
+}
+
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@media (max-width: 600px) {
+    body {
+       
+    }
+
+    .form-container {
+       
+    }
+    button {
+        
+    }
+}

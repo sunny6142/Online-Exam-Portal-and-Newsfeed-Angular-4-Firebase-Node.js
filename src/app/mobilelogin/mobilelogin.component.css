@@ -1,0 +1,7 @@
+#lock {
+    margin: 1.5em auto 0em auto;
+display: block;
+}
+#lock.img {
+    width: 250px;
+}

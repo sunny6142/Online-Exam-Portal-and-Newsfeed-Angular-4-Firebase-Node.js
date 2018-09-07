@@ -1,0 +1,42 @@
+  .example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
+  body{
+    background: white !important;
+    height: auto;
+  }
+  .example-selected-value {
+    margin: 15px 0;
+  }
+  .button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .selectquebutton{
+    margin: 5px;
+    font-weight: 500;
+  }
+
+  .mdl-card__supporting-text{
+    font-size: 20px;
+    color: #222;
+    font-family: 'Proxima Nova Soft','Helvetica Neue',sans-serif;
+    line-height: 1.618;
+    word-wrap: break-word;
+    text-shadow: 0px 0.5px 0 #777;
+  }
+
+  .example-radio-button{
+    font-size: 20px;
+    color: #8D6E63;
+    font-family: 'Proxima Nova Soft','Helvetica Neue',sans-serif;
+    line-height: 1.618;
+    word-wrap: break-word;
+  }

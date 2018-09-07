@@ -1,0 +1,30 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+<header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+    <!-- Title -->
+   <a class="mdl-layout-title" (click)="home()" style="color: white; font-family: 'Dancing Script', cursive; font-size:40px;">All Exam Corner
+        
+    </a>
+    <!-- Add spacer, to align navigation to the right -->
+    <div class="mdl-layout-spacer"></div>
+    <!-- Navigation. We hide it in small screens. -->
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" (click)="Register()">Conduct Your Exam</a>
+        <a class="mdl-navigation__link" (click)="currentaffair()"> NewsFeed </a>
+        <a class="mdl-navigation__link" (click)="navigate()">My Account</a>
+        <a class="mdl-navigation__link" (click)=" logout()">Logout</a>
+    </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+    <span class="mdl-layout-title">All Exam Corner</span>
+    <nav class="mdl-navigation">
+     <!--   <a class="mdl-navigation__link" (click)="Register()">Conduct Your Exam</a> -->
+        <a class="mdl-navigation__link" (click)="currentaffair()"> NewsFeed </a>
+        <a class="mdl-navigation__link" (click)="Stories()"> Stories </a>
+        <a class="mdl-navigation__link" (click)="navigate()">My Account</a>
+        <a class="mdl-navigation__link" (click)=" logout()">Logout</a>
+    </nav>
+  </div>
+</div> <br><br><br>

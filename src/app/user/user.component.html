@@ -1,0 +1,111 @@
+
+
+<div [@fallIn]="state" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <app-header></app-header>
+  
+  <main class="mdl-layout__content">
+    
+      <div class="page-content">
+          <div style="margin:0px;padding:0px" align="center" class="mdl-grid" class="mdl-layout--large-screen-only">
+          <div style="margin:0px;padding:0px" align="center" class="mdl-cell mdl-cell--11-col" >
+              <app-yourexam></app-yourexam>
+             <div *ngIf="items" >
+                          <div  style="float:left; margin:10px;"  class="demo-card-wide mdl-card mdl-shadow--2dp" *ngFor="let item of items | async">
+                              <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">{{item.tittle }}</h2>
+                              </div>
+                              <div class="mdl-card__supporting-text">
+                                {{item.detail }}
+                              </div>
+                              <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                  Comming Soon
+                                </a>
+                              </div>
+                              <div class="mdl-card__menu">
+                                <button mat-icon-button [matMenuTriggerFor]="menu" >
+                                  <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu" >
+                                  <button mat-menu-item *ngFor="let sub of item.sub | slice:1" >
+                                    <mat-icon>voicemail</mat-icon>
+                                    <span > {{ sub }} </span>
+                                  </button>
+                                </mat-menu>
+                              </div>
+                            </div>
+               </div> 
+               <div>
+                  <div style="float:left; margin:10px; width: 352px;"> <span id="method4"></span></div>
+                  <div style="float:left; margin:10px; width: 352px;"> <span id="method5"></span></div>
+                </div>
+            </div>
+              <div class="mdl-cell mdl-cell--1-col"><span id="method6"></span></div>
+            </div>
+
+        <!-- Mobile View --- -->
+        <div   align="center" style="width:100%;" class="mdl-layout--small-screen-only">
+              <app-yourexam></app-yourexam>
+             <div *ngIf="items" >
+                          <div style="margin:20px 0px"  class="demo-card-wide mdl-card mdl-shadow--2dp" *ngFor="let item of items | async">
+                              <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">{{item.tittle }}</h2>
+                              </div>
+                              <div class="mdl-card__supporting-text">
+                                {{item.detail }}
+                              </div>
+                              <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                  Comming Soon
+                                </a>
+                              </div>
+                              <div class="mdl-card__menu">
+                                <button mat-icon-button [matMenuTriggerFor]="menu" >
+                                  <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu" >
+                                  <button mat-menu-item *ngFor="let sub of item.sub | slice:1" >
+                                    <mat-icon>voicemail</mat-icon>
+                                    <span > {{ sub }} </span>
+                                  </button>
+                                </mat-menu>
+                              </div>
+                            </div>
+               </div> 
+              <div style="margin: 60px;"></div>
+            </div>    
+      </div>
+    
+
+            
+            
+    
+<!--
+        <div *ngIf="items" >
+            <ul>
+              
+                <li class="text" *ngFor="let item of items | async">
+               
+                  <span> {{item.sub}} </span>
+                </li>
+              </ul>
+        </div>
+      -->
+      <app-footer></app-footer>
+  </main>
+  
+</div>
+
+
+<!--
+<div class="form-container" id="toolbar">
+<header [@fallIn]="state">
+<button (click)="logout()" class="basic-btn">Logout</button>
+</header>
+<div id="page" [@moveInLeft]="state">
+<h2>Hey {{ name.uid }} !</h2>
+
+</div>
+
+</div>
+-->

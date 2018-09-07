@@ -1,0 +1,452 @@
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  
+    <app-header></app-header>
+    
+    <main class="mdl-layout__content">
+      <div align="center" class="page-content">
+          <div *ngIf="!admin" class="mdl-spinner mdl-js-spinner is-active"></div>
+          <div *ngIf="admin" class="mdl-grid">
+
+              <div class="mdl-cell mdl-cell--2-col mw">
+                <!-- Student Result -->
+                  <mat-expansion-panel [hidden]="admin.state == 'Student'" (click)="onGo(searchcoderesult.value)">
+                      <mat-expansion-panel-header (click)="onGo(searchcoderesult.value)" >
+                        <mat-panel-title>
+                            Student Result
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      
+                      <form  class="example-form">
+                          <mat-form-field class="example-full-width">
+                            <input #searchcoderesult class="search" matInput placeholder="Enter Your Exam Code" aria-label="State" [matAutocomplete]="auto" (keydown)="search($event)">
+                            <mat-autocomplete   #auto="matAutocomplete" >
+                              <mat-option [@fallIn]="state" *ngFor="let state of Exam  | async" [value]="state.examcode">
+                                <img class="searchimage" style="vertical-align:middle;" aria-hidden src="{{state.image}}" height="25" />
+                                <span>{{ state.examcode }}</span> |
+                                <small>{{ state.organization }}</small>
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                        
+                        </form>
+                        <button (click)="onGo(searchcoderesult.value)" style="width:50px" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                            Go
+                        </button>
+                    </mat-expansion-panel>
+
+                    <!-- Edit Exam -->
+                  <mat-expansion-panel [hidden]="admin.state == 'Student'" (click)="onGoEdit(searchcodeedit.value)">
+                      <mat-expansion-panel-header (click)="onGoEdit(searchcodeedit.value)">
+                        <mat-panel-title>
+                            Edit Exam
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      
+                      <form  class="example-form">
+                          <mat-form-field class="example-full-width">
+                            <input #searchcodeedit class="search" matInput placeholder="Enter Your Exam Code" aria-label="State" [matAutocomplete]="editauto" (keydown)="searchEdit($event)">
+                            <mat-autocomplete   #editauto="matAutocomplete" >
+                              <mat-option [@fallIn]="state" *ngFor="let state of Exam  | async" [value]="state.examcode">
+                                <img class="searchimage" style="vertical-align:middle;" aria-hidden src="{{state.image}}" height="25" />
+                                <span>{{ state.examcode }}</span> |
+                                <small>{{ state.organization }}</small>
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                        
+                        </form>
+                        <button (click)="onGoEdit(searchcodeedit.value)" style="width:50px" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                            Go
+                        </button>
+                    </mat-expansion-panel>
+                     
+                    <!----------------- My Result ----------- -->
+                    <mat-expansion-panel (click)="onGoMyResult(searchcodeedit.value)">
+                      <mat-expansion-panel-header (click)="onGoMyResult(searchcodeedit.value)">
+                        <mat-panel-title>
+                           Result
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Exam Given By Me
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      
+                      <form  class="example-form">
+                          <mat-form-field class="example-full-width">
+                            <input #searchcodeedit class="search" matInput placeholder="Enter Your Exam Code" aria-label="State" [matAutocomplete]="myresultauto" (keydown)="searchmyresult($event)">
+                            <mat-autocomplete   #myresultauto="matAutocomplete" >
+                              <mat-option [@fallIn]="state" *ngFor="let state of GetMyResult  | async" [value]="state.examcode">
+                                <img class="searchimage" style="vertical-align:middle;" aria-hidden src="{{state.image}}" height="25" />
+                                <span>{{ state.examcode }}</span> |
+                                <small>{{ state.organization }}</small>
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                        
+                        </form>
+                        <button (click)="onGoMyResult(searchcodeedit.value)" style="width:50px" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                            Go
+                        </button>
+                    </mat-expansion-panel>
+
+                    <!----------------- Add New Student ----------- -->
+                    <mat-expansion-panel [hidden]="admin.state == 'Student'" (click)="AddStd()">
+                        <mat-expansion-panel-header (click)="AddStd()">
+                          <mat-panel-title>
+                             Add Student
+                          </mat-panel-title>
+                          <mat-panel-description>
+                              
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        
+                        <form  class="example-form">
+                           Add Student @ Rs 50
+                        </form>
+                         
+                      </mat-expansion-panel>
+
+                     <!----------------- Generate Student Id ----------- 
+                     <mat-expansion-panel [hidden]="admin.state == 'Student'" (click)="PaymentRequest()">
+                        <mat-expansion-panel-header (click)="PaymentRequest()">
+                          <mat-panel-title>
+                              Generate Exam Id
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        
+                        <form  class="example-form">
+                               Per Id Rs. 5 / Exam<br>
+                        </form>
+                      </mat-expansion-panel>  -->
+              </div>
+              <div [hidden]="admin.state == 'Student'" style="margin-top: 20px;" class="mdl-layout--large-screen-only"> 
+                    <div style="float:left" [hidden]="admin.state == 'Student'">  
+                              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                                <div class="mdl-card__title">
+                                  <h2 class="mdl-card__title-text">
+                                          Account Balance :
+                                  </h2>
+                                </div><h5>Rs {{admin.balance}} </h5>
+                              </div>
+                      </div> 
+                      <div style="float:left" [hidden]="admin.state == 'Student'">  
+                              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                                <div class="mdl-card__title">
+                                  <h2 class="mdl-card__title-text">
+                                          Admin :
+                                  </h2>
+                                </div> <h5> {{admin.name}}</h5>
+                              </div>
+
+                      </div>
+                      <div style="float:left" [hidden]="admin.state == 'Student'">  
+                          <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title">
+                              <h2 class="mdl-card__title-text">
+                                  Institution : 
+                              </h2>
+                            </div> <h5>{{admin.institution}}</h5>
+                          </div>
+
+                  </div>
+              </div>
+              
+           <div align="center" class="mdl-cell mdl-cell--10-col" style="min-width:75%; width:100%;">
+
+                <!-- MY Result -->
+                <div *ngIf="GetMyResult && select_myresult" > 
+                    <div class="demo-card-wide mdl-card mdl-shadow--2dp" *ngFor="let Ritem of GetMyResult | async">
+                        <div class="mdl-card__title">
+                          <h2 class="mdl-card__title-text">{{Ritem.organization }}</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                          Examcode : {{Ritem.examcode }}
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                          <a (click)="ViewMyResult(Ritem)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            View Result
+                          </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <b> Date : {{ Ritem.date | date:"MM - dd - yyyy"}}</b>                         
+                        </div>
+                      </div>
+                  </div>
+
+
+                 <!-- MyResult Tabel -->
+                    <div *ngIf="itemstr && myresult" style="overflow: scroll;">
+                        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                            <thead *ngFor="let itms of itemstr | async ; let j= index" >
+                              <tr *ngIf="j == 0">
+                                   <!-- <th class="mdl-data-table__cell--non-numeric">Id</th> -->
+                                    <th>Name</th>
+                                    <th>Phone No.</th>
+                                    <th>Email</th>
+                                    <th *ngFor="let sub of itms.cat">{{ sub }}</th> 
+                                    <th>Total Marks</th>
+                              </tr>
+                            </thead>
+                            <tbody  *ngFor="let itms of itemstr | async">
+                              <tr  [hidden]="!(itms.key == uid)"> 
+                                
+                                   <!-- <td class="mdl-data-table__cell--non-numeric">{{ itms.key }}</td> -->
+                                    <td >{{ itms.name }}</td>
+                                    <td>{{ itms.phone }}</td> 
+                                    <td>{{ itms.email }}</td> 
+                                    <td *ngFor="let sub of itms.sub">{{ GetSub(itms ,itms.key,sub) }}</td> 
+                                    <td>{{ GetTotal(itms , itms.key) }}</td> 
+                                    <td>
+                                        <button (click)="DetailResult(itms.key ,itms.examcode)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                                            Detail
+                                        </button>
+                                    </td> 
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+                  </div>
+                <!-- Edit Exam -->
+                <div *ngIf="Exam && tabeditexam" > 
+                    <div class="demo-card-wide mdl-card mdl-shadow--2dp" *ngFor="let item of Exam | async">
+                        <div class="mdl-card__title">
+                          <h2 class="mdl-card__title-text">{{item.organization }}</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                          Examcode : {{item.examcode }}
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                          <a (click)="EditExam(item)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            Edit Exam
+                          </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                          <button mat-icon-button [matMenuTriggerFor]="menu" >
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu" >
+                            <button mat-menu-item *ngFor="let sub of item.sub | slice:1" >
+                              <mat-icon>voicemail</mat-icon>
+                              <span > {{ sub }} </span>
+                            </button>
+                          </mat-menu>
+                          
+                        </div>
+                      </div>
+                  </div>
+
+                  <!-- Student Result -->
+                  <div *ngIf="Exam && tabsection" >
+                      <div class="demo-card-wide mdl-card mdl-shadow--2dp" *ngFor="let item of Exam | async">
+                          <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">{{item.organization }}</h2>
+                          </div>
+                          <div class="mdl-card__supporting-text">
+                            Examcode : {{item.examcode }}
+                          </div>
+                          <div class="mdl-card__actions mdl-card--border">
+                            <a (click)="viewResult(item)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                View Result
+                            </a>
+                          </div>
+                          <div class="mdl-card__menu">
+                            <button mat-icon-button [matMenuTriggerFor]="editexammenu" >
+                              <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #editexammenu="matMenu" >
+                              <button mat-menu-item *ngFor="let sub of item.sub | slice:1" >
+                                <mat-icon>voicemail</mat-icon>
+                                <span > {{ sub }} </span>
+                              </button>
+                            </mat-menu>
+                            
+                          </div>
+                        </div>
+                     </div>
+                    <!-- End Student Result -->
+
+
+                    <!-- Student Result Tabel -->
+                    <div *ngIf="ResultLT && tabresult" style="overflow: scroll;">
+                      
+                      <!-- --------------------------------------------------------------------------------------------------------- -->
+                      <div *ngIf="ShowRank && ResultLT">
+                          <table style="margin:0px;" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                              <thead>
+                                <tr>
+                                   <!--   <th >Id</th> -->
+                                      <th sortable-column="name" class="mdl-data-table__cell--non-numeric">
+                                        <a (click)="sortType('name')" [class.active]="sortBy=='name'">Name</a></th>
+                                      <th sortable-column="phone">Phone</th>
+                                      <th sortable-column="email">User/Email</th>
+                                      <th sortable-column="totalmarks">Total Marks</th>
+                                      <th sortable-column="rank" sort-direction="asc">Rank</th>
+                                      <th sortable-column="detail" sort-direction="asc">Detail</th>
+                                </tr>
+                              </thead>
+                              <tbody *ngFor="let itms of itemstr | async;  let j= index">
+                                <tr > 
+                                 <!--   <td class="mdl-data-table__cell--non-numeric">{{ itms.key }}</td> -->
+                                 <td class="mdl-data-table__cell--non-numeric">{{ itms.name }}</td>
+                                 <td>{{ itms.phone }}</td> 
+                                 <td>{{ itms.email }}</td> 
+                                 <td>{{  GetTotal(itms , itms.key) }}</td>
+                                 <td> <span style="width: 100%;background: #f6e201;padding: 10px;border: 1px solid #ffaa0b;border-radius: 30px; }" > {{  j+1 }} </span></td>
+                                 <td>
+                                     <button (click)="DetailResult(itms.key ,itms.examcode)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                                         Detail
+                                     </button>
+                                 </td> 
+                                    
+                                </tr>
+                              </tbody>
+                            </table>
+                      </div>
+                      <!-- --------------------------------------------------------------------------------------------------------- -->
+                      
+                          <table [hidden]="ShowRank" style="margin:0px;" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                              <thead *ngFor="let itms of itemstr | async ; let j= index" >
+                                <tr *ngIf="j == 0">
+                                   <!--   <th >Id</th> -->
+                                      <th sortable-column="name" class="mdl-data-table__cell--non-numeric">
+                                        <a (click)="sortType('name')" [class.active]="sortBy=='name'">Name</a></th>
+                                      <th sortable-column="phone">Phone No.</th>
+                                      <th sortable-column="email">Email</th>
+                                      <th *ngFor="let sub of itms.cat">{{ sub }}</th> 
+                                      <th sortable-column="totalmarks" sort-direction="asc">Total Marks</th>
+                                </tr>
+                              </thead>
+                              <tbody *ngFor="let itms of itemstr | async ">
+                                <tr> 
+                                 <!--   <td class="mdl-data-table__cell--non-numeric">{{ itms.key }}</td> -->
+                                    <td class="mdl-data-table__cell--non-numeric">{{ itms.name }}</td>
+                                    <td>{{ itms.phone }}</td> 
+                                    <td>{{ itms.email }}</td> 
+                                    <td *ngFor="let sub of itms.sub">{{ GetSub(itms ,itms.key,sub)}}</td> 
+                                    <td>{{  GetTotal(itms , itms.key) }}</td>
+                                    <td>
+                                        <button (click)="DetailResult(itms.key ,itms.examcode)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                                            Detail
+                                        </button>
+                                    </td> 
+                                    
+                                </tr>
+                              </tbody>
+                            </table>
+                    </div>
+                    <!-- End Student Result Tabel ------ -->
+
+                    <!-- Add Student ---------------- -->
+                    <div *ngIf="addstudent" align="center" style="background:white; opacity: .75; padding :5px; max-width: 700px;
+                    min-width: 300px;
+                    width: 100%;">
+                      <h3>Add Student {{(info | async)?.institution  }}</h3>
+                      <span *ngIf="error && erroe != ''" style="color:red"><br>{{error}}<br></span>
+                      <span *ngIf="msg != ''" style="color:green"><br>{{msg}}<br></span>
+                        <form #userform="ngForm" (ngSubmit)="AddUser(userform.value , userform )" novalidate>
+                         <!--   <div class="form-group">
+                                <mat-form-field class="fwidth">
+                                  <input class="form-control" matInput  #aidcodeRef="ngModel" placeholder="Admin ID" name="adminid"  [ngModel] = "uid" [readonly]="true">
+                                
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="fwidth">
+                                  <input class="form-control" matInput  #iocodeRef="ngModel" placeholder="Institution or Organization" name="Institution"  [ngModel] = "(info | async)?.institution" [readonly]="true">
+                                
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="fwidth">
+                                  <input class="form-control" matInput  #stcodeRef="ngModel" placeholder="State" name="state"  [ngModel] = "std" [readonly]="true" >
+                                
+                                </mat-form-field>
+                            </div>  -->
+                            <div class="form-group">
+                                <mat-form-field class="fwidth">
+                                  <input class="form-control" minlength="3" maxlength="30" matInput #nameRef="ngModel" required placeholder="Name" name="name" [(ngModel)] = "name">
+                                 
+                                  <mat-error *ngIf="nameRef.errors && (nameRef.dirty || nameRef.touched)">
+                                      <span [hidden]="!nameRef.errors.required">
+                                        Name is <strong>required</strong>
+                                      </span>
+                                      <span [hidden]="!nameRef.errors.minlength">
+                                          Name can't be less than <strong>3 char</strong>
+                                      </span>
+                                      <span [hidden]="!nameRef.errors.maxlength">
+                                          Name must not be greater than <strong>30 char</strong>
+                                      </span>
+                                   </mat-error>
+                                </mat-form-field>
+                              </div>
+                              <div class="form-group">
+                                <mat-form-field class="fwidth">
+                                <!--  <input class="form-control"  #emailRef="ngModel" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" matInput placeholder="Email" name="email" ngModel>
+                                -->
+                                <input class="form-control"  #emailRef="ngModel" required pattern="[a-zA-Z0-9-]+" matInput placeholder="Create User Id" name="email" [(ngModel)]="userid">
+                                
+                                  <mat-error *ngIf="emailRef.errors && (emailRef.dirty || emailRef.touched)">
+                                      <span [hidden]="!emailRef.errors.pattern">
+                                        pls. enter a Only Number and Character
+                                      </span>
+                                      <span [hidden]="!emailRef.errors.required">
+                                          User Id Address is <strong>required</strong>
+                                        </span>
+                                   </mat-error>
+                                </mat-form-field>
+                              </div>
+                              <div class="form-group">
+                                  <mat-form-field class="fwidth">
+                                    <input class="form-control" minlength="3" maxlength="30" matInput #passRef="ngModel" required placeholder="Password" name="password" [(ngModel)]="pass">
+                                   
+                                    <mat-error *ngIf="passRef.errors && (passRef.dirty || passRef.touched)">
+                                        <span [hidden]="!passRef.errors.required">
+                                          Pasword is <strong>required</strong>
+                                        </span>
+                                        <span [hidden]="!passRef.errors.minlength">
+                                          Password can't be less than <strong>3 char</strong>
+                                        </span>
+                                        <span [hidden]="!passRef.errors.maxlength">
+                                          Password must not be greater than <strong>30 char</strong>
+                                        </span>
+                                    </mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="form-group">
+                                  <mat-form-field class="fwidth">
+                                    <input class="form-control" #contactRef="ngModel" minlength="10" pattern="^[0-9]{10}$" maxlength="10" matInput required placeholder="Contact no." name="contact" [(ngModel)]="contact">
+                                  
+                                    <mat-error *ngIf="contactRef.errors && (contactRef.dirty || contactRef.touched)">
+                                        <span [hidden]="!contactRef.errors.pattern">
+                                          pls. enter a valid Contact no.
+                                        </span>
+                                        <span [hidden]="!contactRef.errors.required">
+                                            Contact no. is <strong>required</strong>
+                                          </span>
+                                     </mat-error>
+                                    
+                                  </mat-form-field>
+                                </div>
+                                <button [disabled]="!userform.form.valid" type="submit" style="margin-top:10px" mat-raised-button color="accent">Add Student</button>
+                          </form>
+                    </div>
+                    <!--- End Add Student ------------- -->
+              </div>
+            <!--  <div class="mdl-cell mdl-cell--1-col">
+              </div> -->
+          </div>
+       
+    <!--    <app-yourexam></app-yourexam> -->
+        
+      </div>
+      <app-footer></app-footer>
+    </main>
+    
+  </div>

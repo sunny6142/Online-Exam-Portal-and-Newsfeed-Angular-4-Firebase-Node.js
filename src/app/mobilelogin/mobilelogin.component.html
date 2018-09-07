@@ -1,0 +1,141 @@
+<style>
+    .demo-card-wide.mdl-card {
+      width: 100%;
+    }
+    .demo-card-wide > .mdl-card__title {
+      color: #fff;
+      background: linear-gradient(to right, #3f3a3a,#3f3a3a);
+      -moz-box-shadow: inset 0 0 100px #050505;
+      -webkit-box-shadow: inset 0 0 100px #050505;
+      box-shadow: inset 0 0 100px #050505;
+    }
+    .demo-card-wide > .mdl-card__menu {
+      color: #fff;
+      background: linear-gradient(to right, #3f3a3a,#3f3a3a);
+      -moz-box-shadow: inset 0 0 100px #050505;
+      -webkit-box-shadow: inset 0 0 100px #050505;
+      box-shadow: inset 0 0 100px #050505;
+    }
+    </style>
+    
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      
+        <header class="mdl-layout__header">
+          <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">
+              <span class="mdl-layout-title" style="font-family: 'Dancing Script', cursive; font-size:40px;">Learner</span>
+            </span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            
+          </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+          <span class="mdl-layout-title" >Learner</span>
+          <nav class="mdl-navigation">
+              <a class="mdl-navigation__link" (click)="Stories()"> Stories </a>
+            <a class="mdl-navigation__link" (click)="currentaffair()"> NewsFeed</a>
+            <a class="mdl-navigation__link" (click)="adminlogin()"> Admin</a>
+          </nav>
+        </div>
+        <main align="center" style="background: #ffa508;" class="mdl-layout__content">
+              <div style="position: absolute;
+              width: 100%;
+              margin: 0px auto;
+              bottom: 15%; " align="center">
+             
+                        <div align="center" style="background: #ffa508;" >
+                        <!--    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" (click)="currentaffair()">
+                                C-A
+                              </button>
+                           -->
+                          <div style="width:200px; height: 200px; overflow:hidden;">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/allexamcorner.appspot.com/o/144_144.png?alt=media&token=b4f86036-7c78-4938-a20a-5997a474d155" id="lock">
+                          </div>
+                              
+                          
+                           <!-- <span class="error" *ngIf="error">{{ error }}</span>
+                             <button (click)="loginFb()" id="fb">Login With Facebook</button><br>
+                            <button (click)="loginGoogle()" id="google">Login With Google</button>
+                            <button routerLink="/login-email" id="email">Email</button>
+                           -->
+                           <span class="error" style="color:red" *ngIf="error" >{{ error }}</span>
+                           <span style="color:green" *ngIf="msg && msg != ''" >{{ msg }}</span>
+                             <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+                           
+                              <div *ngIf = "(laginP == 'Student')" class="form-group" >
+                                <mat-form-field class="fwidth">
+                                  <input class="form-control"  #userRef="ngModel" required pattern="[a-zA-Z0-9-]+" matInput placeholder="User Id" name="user" ngModel>
+                                  <mat-error *ngIf="userRef.errors && (userRef.dirty || userRef.touched)">
+                                      <span [hidden]="!userRef.errors.pattern">
+                                        pls. enter a valid User Id
+                                      </span>
+                                      <span [hidden]="!userRef.errors.required">
+                                          User Id is <strong>required</strong>
+                                        </span>
+                                   </mat-error>
+                                </mat-form-field>
+                              </div>
+                           <div *ngIf = "(laginP == 'Institution')" class="form-group" >
+                               <mat-form-field class="fwidth">
+                                 <input class="form-control"  #emailRef="ngModel" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" matInput placeholder="Email" name="email" ngModel>
+                                 <mat-error *ngIf="emailRef.errors && (emailRef.dirty || emailRef.touched)">
+                                     <span [hidden]="!emailRef.errors.pattern">
+                                       pls. enter a valid Email Address
+                                     </span>
+                                     <span [hidden]="!emailRef.errors.required">
+                                         Email Address is <strong>required</strong>
+                                       </span>
+                                  </mat-error>
+                               </mat-form-field>
+                             </div>
+                                  <div class="form-group">
+                                      <mat-form-field class="fwidth">
+                                        <input class="form-control" minlength="3" maxlength="15" matInput id="password" #passwordRef="ngModel" required placeholder="Password.." name="password" ngModel>
+                                      <mat-error *ngIf="passwordRef.errors && (passwordRef.dirty || passwordRef.touched)">
+                                          <span [hidden]="!passwordRef.errors.required">
+                                            id is <strong>required</strong>
+                                          </span>
+                                          <span [hidden]="!passwordRef.errors.minlength">
+                                              id can't be less than <strong>3 char</strong>
+                                          </span>
+                                          <span [hidden]="!passwordRef.errors.maxlength">
+                                              id must not be greater than <strong>15 char</strong>
+                                          </span>
+                                      </mat-error>
+                                      </mat-form-field>
+                                  </div>
+                             
+                              
+                                
+                               <button style="margin: 3em auto 3em auto; width: 150px;"  type="submit" [disabled]="!formData.valid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                                 Log in
+                                </button>
+                               <!-- <a routerLink="/signup" class="alc">...By Warsi Sir</a> -->
+                           </form>
+                          
+                        </div>
+                        
+                        
+                    </div>
+            
+                <app-footer></app-footer>
+        </main>
+     
+      </div>
+     
+    <!--<div class="form-container">
+      <img src="assets/images/lock.svg" id="lock">
+    
+        <span class="error" *ngIf="error">{{ error }}</span>
+    
+      <button (click)="loginFb()" id="fb">Login With Facebook</button><br>
+      <button (click)="loginGoogle()" id="google">Login With Google</button>
+      <button routerLink="/login-email" id="email">Email</button>
+    
+      <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
+    </div>
+    -->
+    

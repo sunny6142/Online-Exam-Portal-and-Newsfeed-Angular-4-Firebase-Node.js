@@ -1,0 +1,25 @@
+.demo-layout-transparent {
+    background: white ; /*url('../assets/demos/transparent.jpg') center / cover; */
+  }
+  .demo-layout-transparent .mdl-layout__header,
+  .demo-layout-transparent .mdl-layout__drawer-button {
+    /* This background is dark, so we set text to white. Use 87% black instead if
+       your background is light. */
+    color: black;
+  }
+
+  .demo-card-wide.mdl-card {
+ 
+  }
+  .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 136px;
+    background: #1B1B69; /*url('https://gradestack.com/images/groupFiles/6c7558ae2d9db49a6ffec566f669734a.png') center / cover; 
+  */
+  }
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+  div.demo-card-wide{
+    
+}

@@ -1,0 +1,76 @@
+<div  class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title" style="color: white; font-family: 'Dancing Script', cursive; font-size:40px;">All Exam Corner
+                            
+            </span>
+                                    
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            
+            </div>
+    </header>
+
+<main style="background: white" class="mdl-layout__content">
+    <div class="mdl-grid">
+                    
+    <div class="mdl-cell mdl-cell--1-col"><!--Ads are here -->
+</div>
+    
+    <div class="mdl-cell mdl-cell--7-col" *ngIf="selectquestion">
+                    
+                    <div class="mdl-layout--small-screen-only" align="center" style="display:block; width:100%; color:blue; border: 1px solid red; padding: 5px;">
+                    </div> 
+                    <div *ngFor="let question of selectquestion | async">
+                                    
+                           <span>
+                                    
+                                    <div class="mdl-card__supporting-text">
+                                         <span style="font-size: 20px;
+                                         color: #8D6E63;
+                                         font-family: Verdana;
+                                         text-shadow: 0px 0.5px 0 #8D6E63;">  Qno. {{ question.qno }} :
+                                    </span>      
+                                         
+                                         <span [innerHTML]="question.question | safeHtml"> </span>
+                                     </div>
+                                         
+                                         A). <span [innerHTML]="question.options.A | safeHtml"> </span> <br>
+                                         B). <span [innerHTML]="question.options.B | safeHtml"> </span> <br>
+                                         C). <span [innerHTML]="question.options.C | safeHtml"> </span> <br>
+                                         D). <span [innerHTML]="question.options.D | safeHtml"> </span><br>
+                                          
+                             <div class="example-selected-value" >Correct option is: {{question.correctoptions}}</div>
+                             <div class="example-selected-value" > <span [innerHtml]= 'GetSelectedOption(sectioncode , question.qno) | safeHtml'>  </span></div>
+                             <div class="example-selected-value" > <span [innerHtml]= 'GetMarks(sectioncode , question.qno) | safeHtml'>  </span> </div>
+                           </span>
+                    </div>
+
+    </div>
+    <!-- Left corner -->
+    <div  class="mdl-cell mdl-cell--4-col">
+            <div *ngIf="selectsect" align="center">
+                    <span style="display: ruby-base-container;"> 
+                            <div>Select Section : </div> 
+                            <button style="width:100px" mat-button [matMenuTriggerFor]="menu">{{Menu}} <i class="material-icons">keyboard_arrow_down</i></button> 
+                            
+                    </span>
+                    <mat-menu #menu="matMenu">
+                            <button (click)="selectcat(j,sub)" mat-menu-item *ngFor="let sub of selectsect | async; let j= index" >
+                                            {{ sub.subject }} 
+                            </button>
+                            
+                    </mat-menu>                    
+            </div>
+
+            <div style="margin-top:50px;">
+                            <span id="method15"></span>
+            </div>
+    </div>
+    </div>
+  <br><br><br>
+</main>
+
+</div>
+

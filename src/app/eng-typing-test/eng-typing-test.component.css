@@ -1,0 +1,112 @@
+
+.target{
+  color:#fff;
+  text-align:left;
+  font-size:32px;
+  min-width:300px;
+  min-height:40px;
+  width:600px;
+  display:inline-block;
+  position:relative;
+  white-space:pre;
+  background:#333;
+  box-shadow:inset 0 0 10px 0 rgba(255,255,255,0.2);
+  padding:22px ;
+  padding-bottom: 11px;
+  padding-left: 10px;
+}
+.mdl-textfield__input{
+    text-align: left;
+    padding: 5px;
+}
+.mono {
+    font-family: "Cutive Mono", monospace;
+}
+.demo-card-wide.mdl-card {
+  width: 136px;
+  height: 66px;
+  min-height: 76px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 12px;
+  background-color: #00FF06;
+}
+#mmenu {
+  max-height: 200px;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+div.two{
+  color: red;
+  margin: 20px;
+}
+main {
+  background:url('https://s3.envato.com/files/236046726/img%20prev.jpg')
+}
+#fitin {
+ 
+  overflow: hidden;
+  font-size: 1.5em;
+  font-family: "Sans-serif";
+  font-weight: 600;
+  min-height: 200px;
+  background: white;
+
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.target:after{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: #f00;
+    left: 10px;
+    top: 53px;
+    -webkit-animation:cursor_flash .5s infinite;
+    -moz-animation:   cursor_flash .5s infinite;
+    -o-animation:     cursor_flash .5s infinite;
+    animation:        cursor_flash .5s infinite;
+    
+  }
+  .target:before{
+    font-family:Roboto;
+    top:0;
+    left:0;
+    right:0;
+    background:#000;
+    content:'Type the text below';
+    text-transform:uppercase;
+    font-size:10px;
+    padding:2px;
+    text-align:left;
+    position:absolute;
+    color:#fff;
+  }
+
+@-webkit-keyframes cursor_flash {
+  0%   { background: #fff; }
+  50%  { background: #99f; }
+  100% { background: #fff; }
+}
+@-moz-keyframes cursor_flash {
+  0%   { background: #fff; }
+  50%  { background: #99f; }
+  100% { background: #fff; }
+}
+@-o-keyframes cursor_flash {
+  0%   { background: #fff; }
+  50%  { background: #99f; }
+  100% { background: #fff; }
+}
+@keyframes cursor_flash {
+  0%   { background: #fff; }
+  50%  { background: #99f; }
+  100% { background: #fff; }
+}

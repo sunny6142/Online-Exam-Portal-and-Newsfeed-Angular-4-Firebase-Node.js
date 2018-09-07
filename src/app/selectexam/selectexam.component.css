@@ -1,0 +1,69 @@
+.demo-layout-transparent {
+    background: white ; /*url('../assets/demos/transparent.jpg') center / cover; */
+  }
+  .demo-layout-transparent .mdl-layout__header,
+  .demo-layout-transparent .mdl-layout__drawer-button {
+    /* This background is dark, so we set text to white. Use 87% black instead if
+       your background is light. */
+    color: black;
+  }
+
+  .demo-card-wide.mdl-card {
+    max-width: 352px;
+  }
+  .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 136px;
+    background: orange; /*url('https://gradestack.com/images/groupFiles/6c7558ae2d9db49a6ffec566f669734a.png') center / cover; 
+  */
+  }
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+  .example-button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+main.mdl-layout__content{
+}
+
+div.demo-card-wide{
+}
+.example-form {
+  min-width: 150px;
+  max-width: 100%;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+main {
+  background:url('https://s3.envato.com/files/236046726/img%20prev.jpg')
+}
+.searchimage{
+  height:25px;
+}
+
+div.subtittle{
+  text-align: right;
+  padding: 11px;
+  font-size: 20px;
+  font-family: initial;
+  color: #000;
+  text-shadow: 1px 1px 3px #bbb;
+}
+div.subheader{
+  background: darkcyan;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+div.subsec3{
+  margin-top: 11px;
+}
+
+input.search{
+  color: white;
+}
+

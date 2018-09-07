@@ -1,0 +1,183 @@
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <app-header></app-header>
+  
+  <main align="center" class="mdl-layout__content">
+    <div align="center" class="page-content">
+
+        <div class="mdl-grid subheader">
+            <div class="mdl-cell mdl-cell--3-col subtittle">Select / Search Your Exam</div>
+            <div class="mdl-cell mdl-cell--6-col">
+                <form  class="example-form">
+                    <mat-form-field class="example-full-width">
+                      <input #searchcode class="search" matInput placeholder="Enter Your Exam Code" aria-label="State" [matAutocomplete]="auto" (keydown)="search($event)">
+                      <mat-autocomplete   #auto="matAutocomplete" >
+                        <mat-option [@fallIn]="state" *ngFor="let state of Exam  | async" [value]="state.examcode">
+                          <img class="searchimage" style="vertical-align:middle;" aria-hidden src="{{state.image}}" height="25" />
+                          <span>{{ state.examcode }}</span> |
+                          <small>{{ state.organization }}</small>
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  
+                    <br />
+                  </form>
+                  
+            </div>
+            <div class="mdl-cell mdl-cell--1-col subsec3">
+                  <button (click)="onGo(searchcode.value)" style="background: initial; margin-left:5px" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                      Go
+                  </button>
+                  
+             </div>
+        </div>
+        
+     
+  <!--    <app-yourexam></app-yourexam> -->
+ <!--- Desktop -------------------->
+ <div *ngIf="!admin" class="mdl-spinner mdl-js-spinner is-active"></div>
+ <div *ngIf="admin"  align="center" style="width:100%;" class="mdl-layout--large-screen-only">
+              <span *ngIf="Exam && admin">
+                <div align="center" *ngFor="let item of Exam |  orderBy: 'item.date'| async ">
+                    <div *ngIf="((admin.adminid == item.uid || uid == item.uid) && item.publish =='publish')" style="margin:10px; margin-top:0px ;float:left;" class="demo-card-wide mdl-card mdl-shadow--2dp" >
+                        
+                        <div class="mdl-card__title">
+                          <h2 class="mdl-card__title-text">{{item.organization }}</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                          Examcode : {{item.examcode }}
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                          <a (click)="startExam(item)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            Enter in Exam Room
+                          </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <b> Created on : {{ item.date | date: "MM - dd - yyyy" }} </b>
+                            
+                          <button mat-icon-button [matMenuTriggerFor] = "menu" >
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu" >
+                            <button mat-menu-item *ngFor="let sub of item.sub | slice:1" >
+                              <mat-icon>voicemail</mat-icon>
+                              <span > {{ sub }} </span>
+                            </button>
+                          </mat-menu><br>
+                          <div> {{ item.detail }} </div>
+                        </div>
+                      </div>
+                  </div>
+                </span>
+                  <span *ngIf="Examf && launch && admin" >
+                  <div *ngFor="let item of Examf |  orderBy: 'item.date'| async ">
+                    <div *ngIf="((admin.adminid == item.uid || uid == item.uid) && item.publish =='publish')" style="margin:10px; margin-top:0px ;float:left;" class="demo-card-wide mdl-card mdl-shadow--2dp" >
+                      
+                        <div class="mdl-card__title">
+                          <h2 class="mdl-card__title-text">{{item.organization }}</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                          Examcode : {{item.examcode }}
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                          <a (click)="startExam(item)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            Enter in Exam Room
+                          </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <b> Created on : {{ item.date | date: "MM - dd - yyyy" }} </b>
+                            
+                          <button mat-icon-button [matMenuTriggerFor] = "menu" >
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu" >
+                            <button mat-menu-item *ngFor="let sub of item.sub | slice:1" >
+                              <mat-icon>voicemail</mat-icon>
+                              <span > {{ sub }} </span>
+                            </button>
+                          </mat-menu><br>
+                          <div> {{ item.detail }} </div>
+                        </div>
+                      
+                      </div>
+                  </div>
+                </span>
+                  <div id="method1"></div>
+           
+          </div>     
+<!---- Mobile Screen -------->
+        <div align="center" style="width:100%;" class="mdl-layout--small-screen-only">
+          <span  *ngIf="Exam && admin" >
+                <div align="center" *ngFor="let item of Exam |  orderBy: 'item.date'| async ">
+                    <div *ngIf="((admin.adminid == item.uid || uid == item.uid) && item.publish =='publish')" style="margin-bottom:20px;"class="demo-card-wide mdl-card mdl-shadow--2dp">
+                        
+                        <div class="mdl-card__title">
+                          <h2 class="mdl-card__title-text">{{item.organization }}</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                          Examcode : {{item.examcode }}
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                          <a (click)="startExam(item)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            Enter in Exam Room
+                          </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <b> Created on : {{ item.date | date: "MM - dd - yyyy" }} </b>
+                            
+                          <button mat-icon-button [matMenuTriggerFor] = "menu" >
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu" >
+                            <button mat-menu-item *ngFor="let sub of item.sub | slice:1" >
+                              <mat-icon>voicemail</mat-icon>
+                              <span > {{ sub }} </span>
+                            </button>
+                          </mat-menu><br>
+                          <div> {{ item.detail }} </div>
+                        </div>
+                      </div>
+                  </div>
+                </span>
+                  <span  *ngIf="Examf && launch && admin"> 
+                  <div *ngFor="let item of Examf |  orderBy: 'item.date'| async ">
+                    <div *ngIf="((admin.adminid == item.uid || uid == item.uid) && item.publish =='publish')" style="margin-bottom:20px;" class="demo-card-wide mdl-card mdl-shadow--2dp" >
+                        
+                        <div class="mdl-card__title">
+                          <h2 class="mdl-card__title-text">{{item.organization }}</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                          Examcode : {{item.examcode }}
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                          <a (click)="startExam(item)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            Enter in Exam Room
+                          </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <b> Created on : {{ item.date | date: "MM - dd - yyyy" }} </b>
+                            
+                          <button mat-icon-button [matMenuTriggerFor] = "menu" >
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu" >
+                            <button mat-menu-item *ngFor="let sub of item.sub | slice:1" >
+                              <mat-icon>voicemail</mat-icon>
+                              <span > {{ sub }} </span>
+                            </button>
+                          </mat-menu><br>
+                          <div> {{ item.detail }} </div>
+                        </div>
+                      </div>
+                  </div>
+                </span>
+                  <div id="method1"></div>
+           
+          </div>
+         
+    </div>
+    <app-footer></app-footer>
+  </main>
+  
+    
+</div>

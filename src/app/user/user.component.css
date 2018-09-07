@@ -1,0 +1,40 @@
+.demo-layout-transparent {
+    background: white ; /*url('../assets/demos/transparent.jpg') center / cover; */
+  }
+  .demo-layout-transparent .mdl-layout__header,
+  .demo-layout-transparent .mdl-layout__drawer-button {
+    /* This background is dark, so we set text to white. Use 87% black instead if
+       your background is light. */
+    color: black;
+  }
+  .mdl-cell--11-col {
+ /*   width: calc(85% - 17px); */
+  }
+  .mdl-cell--1-col {
+ /*   width: calc(13.3333333333%); */
+}
+
+  .demo-card-wide.mdl-card {
+  
+  }
+  .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 136px;
+    background: orange; /*url('https://gradestack.com/images/groupFiles/6c7558ae2d9db49a6ffec566f669734a.png') center / cover; 
+  */
+  }
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+  .example-button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  main {
+    background:url('https://s3.envato.com/files/236046726/img%20prev.jpg')
+}
+div.demo-card-wide{
+  
+}

@@ -1,0 +1,113 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <app-header></app-header>
+    
+    <main align="center" class="mdl-layout__content">
+        <div *ngIf="!admin" class="mdl-spinner mdl-js-spinner is-active"></div>
+      <div *ngIf="admin" class="mdl-grid">
+        <div class="mdl-cell mdl-cell--3-col"><span id="method13"></span></div>
+        <div *ngIf="image" align="center" class="mdl-cell mdl-cell--6-col">
+            <div class="logo">
+              <img style=" width: 100px; height: auto; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+                " src ="{{image}}">
+            </div>
+            <div class="organisation">
+              {{ organization }} Test
+            </div>
+            <div >
+                <ul class="tim">
+                    <li class="nmin">{{noq}} QUESTIONS </li>
+                    <li class="nmin">{{time}} MINUTES </li>
+                  </ul>
+            </div>
+            <div class="container">
+                <div>
+                    <div class="Instructions">Instructions</div>
+                    
+                    <div class="Instlist">
+                      <ol >
+                        <li> The student may not use his or her textbook, course notes, or receive help from a proctor or any other outside source </li>
+                        <li> Dont Press Back Button During Exam </li>
+                        <li> Press Finish Button, Only if you have completed your Exam </li>
+                        <li> Once Exam Finish Dont Press Back Button else your marks will be 0 </li>
+                      </ol>
+                    </div>
+                </div>
+                <form #userform="ngForm" (ngSubmit)="onSubmit(userform.value)" novalidate>
+                    <div class="form-group">
+                        <mat-form-field class="fwidth">
+                          <input class="form-control" matInput required #examcodeRef="ngModel" placeholder="examcode" name="examcode" [ngModel] = "examcode" [readonly]="examcode">
+                         
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field class="fwidth">
+                          <input class="form-control" minlength="3" maxlength="35" matInput id="id" #idRef="ngModel" required placeholder="Id" name="id" [(ngModel)]="admin.name">
+                         <mat-error *ngIf="idRef.errors && (idRef.dirty || idRef.touched)">
+                            <span [hidden]="!idRef.errors.required">
+                              id is <strong>required</strong>
+                            </span>
+                            <span [hidden]="!idRef.errors.minlength">
+                                id can't be less than <strong>3 char</strong>
+                            </span>
+                            <span [hidden]="!idRef.errors.maxlength">
+                                id must not be greater than <strong>35 char</strong>
+                            </span>
+                         </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="fwidth">
+                          <input class="form-control" minlength="3" maxlength="35" matInput #nameRef="ngModel" required placeholder="Name" name="name" [(ngModel)]="admin.name">
+                         
+                          <mat-error *ngIf="nameRef.errors && (nameRef.dirty || nameRef.touched)">
+                              <span [hidden]="!nameRef.errors.required">
+                                Name is <strong>required</strong>
+                              </span>
+                              <span [hidden]="!nameRef.errors.minlength">
+                                  Name can't be less than <strong>3 char</strong>
+                              </span>
+                              <span [hidden]="!nameRef.errors.maxlength">
+                                  Name must not be greater than <strong>35 char</strong>
+                              </span>
+                           </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="form-group">
+                        <mat-form-field class="fwidth">
+                          <input class="form-control"  #emailRef="ngModel" required matInput placeholder="User Id/Email" name="email" [(ngModel)]="admin.user">
+                          <mat-error *ngIf="emailRef.errors && (emailRef.dirty || emailRef.touched)">
+                              <span [hidden]="!emailRef.errors.pattern">
+                                pls. enter a valid Email Address
+                              </span>
+                              <span [hidden]="!emailRef.errors.required">
+                                  Email Address is <strong>required</strong>
+                                </span>
+                           </mat-error>
+                        </mat-form-field>
+                      </div>  
+                      <div class="form-group">
+                          <mat-form-field class="fwidth">
+                            <input class="form-control" #contactRef="ngModel" minlength="10" pattern="^[0-9]{10}$" maxlength="10" matInput required placeholder="Contact no." name="contact" [(ngModel)]="admin.contact">
+                          
+                            <mat-error *ngIf="contactRef.errors && (contactRef.dirty || contactRef.touched)">
+                                <span [hidden]="!contactRef.errors.pattern">
+                                  pls. enter a valid Contact no.
+                                </span>
+                                <span [hidden]="!contactRef.errors.required">
+                                    Contact no. is <strong>required</strong>
+                                  </span>
+                             </mat-error>
+                            
+                          </mat-form-field>
+                        </div>
+                        <button [disabled]="!userform.form.valid" type="submit" style="margin-top:10px" mat-raised-button color="accent">Start Exam</button>
+                  </form>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--3-col"><span id="method14"></span></div>
+      </div>
+      <app-footer></app-footer>
+    </main>
+    
+  </div>

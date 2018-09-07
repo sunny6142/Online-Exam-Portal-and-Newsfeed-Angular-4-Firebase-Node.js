@@ -1,0 +1,126 @@
+<div  class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title" style="color: white; font-family: 'Dancing Script', cursive; font-size:40px;">{{organization}}
+                                
+                </span>
+                                        
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                
+         <!--       <nav class="mdl-navigation mdl-layout--large-screen-only">
+                        <a class="mdl-navigation__link" >
+                                        <div *ngIf="count == 0 && nav == 1">{{ FinishExam()}}</div>
+                                        Timer - <span *ngIf="countDown | async as countValue"> 
+                                                {{ Math.floor( countValue/(60*60) ) }} : {{ Math.floor((countValue/60) %60) }} : {{countValue%60}}
+                                        </span>
+                        </a>
+                       
+                </nav>   -->
+                </div>
+        </header>
+  
+  <main style="background: white" class="mdl-layout__content">
+    
+        
+        <div class="mdl-grid">
+                        
+        <div class="mdl-cell mdl-cell--1-col"><!--Ads are here -->
+		</div>
+        
+        <div class="mdl-cell mdl-cell--7-col" *ngIf="selectquestion">
+                        
+                        <div class="mdl-layout--small-screen-only" align="center" style="display:block; width:100%; color:blue; border: 1px solid red; padding: 5px;">
+                                 <b>   Timer -
+                                
+                                        <div *ngIf="count == 0 && nav == 1">{{ FinishExam()}}</div>
+                                        <span *ngIf="countDown | async as countValue"> {{ Math.floor( count/(60*60) ) }} : {{ Math.floor((count/60) %60) }} : {{count%60}}</span>
+        
+                        </b> </div> 
+                        <div *ngFor="let question of selectquestion | async">
+                                        
+                               <span *ngIf="question.qno == qno">
+                                        
+                                        <div class="mdl-card__supporting-text">
+                                             <span style="font-size: 20px;
+                                             color: #8D6E63;
+                                             font-family: Verdana;
+                                             text-shadow: 0px 0.5px 0 #8D6E63;">  Qno. {{ question.qno }} :
+                                             </span>      
+                                             
+                                             <span [innerHTML]="question.question | safeHtml"> </span>
+                                         </div>
+                                             
+                                         <mat-radio-group style="margin-left: 30px;"class="example-radio-group" [(ngModel)]="favoriteSeason">
+                                                <mat-radio-button class="example-radio-button"  [value]="seasons[0]" checked>
+                                                         <span [innerHTML]="question.options.A | safeHtml"> </span>
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button"  [value]="seasons[1]">
+                                                           
+                                                           <span [innerHTML]="question.options.B | safeHtml"> </span>
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button"  [value]="seasons[2]">
+                                                                <span [innerHTML]="question.options.C | safeHtml"> </span>
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button"  [value]="seasons[3]">
+                                                                <span [innerHTML]="question.options.D | safeHtml"> </span>
+                                                </mat-radio-button>
+                                        </mat-radio-group>
+                                 <div class="example-selected-value" *ngIf="SRS.has(sectioncode+(qno-1))">Your selected option is: {{ SRS.get(sectioncode+(qno-1))[0] }}</div>
+                                       
+                                         <div class="button-row">
+                                                <button (click)="Previous()"  mat-button color="primary" [disabled]="!(1 < qno)" >Previous</button>
+                                                <button (click)="reminder(qno)" mat-button color="warn">Reminder</button>
+                                                <button (click)="saveandnext(qno,question)" [hidden]="!(((selectquestion | async)?.length) > qno)" mat-button style="color:green">Save Next</button>
+                                                <button (click)="save(qno,question)" [hidden]="(((selectquestion | async)?.length) > qno)" mat-button style="color:green">Save</button>
+                                                
+                                                <button (click)="skip(qno)" [hidden]="!(((selectquestion | async)?.length) > qno)" mat-button color="accent">Skip</button>
+                                        </div>
+                               </span>
+                        </div>
+
+                                
+                 
+                        
+        </div>
+        <!-- Left corner -->
+        <div  class="mdl-cell mdl-cell--4-col">
+                <div *ngIf="selectsect" align="center">
+                        <span style="display: ruby-base-container;"> 
+                                <div>Select Section : </div> 
+                                <button style="width:100px" mat-button [matMenuTriggerFor]="menu">{{Menu}} <i class="material-icons">keyboard_arrow_down</i></button> 
+                                <button color="primary" class="btn btn-primary" style="width:100px; background-color:tomato" mat-button (click)="finish()">
+                                      <b>  FINISH </b>
+                                </button>
+                               
+                        </span>
+                        <mat-menu #menu="matMenu">
+                                <button (click)="selectcat(j,sub)" mat-menu-item *ngFor="let sub of selectsect | async; let j= index" >
+                                                {{ sub.subject }} 
+                                </button>
+                                
+                        </mat-menu>
+
+                        
+                </div>
+
+                <div  *ngIf="selectquestion">
+                        
+                        <button (click)="changequstion(j+1)" class="selectquebutton" mat-mini-fab  *ngFor="let i of counter((selectquestion | async)?.length).fill(1) ; let j= index" [style.background-color]="(SRS.has(sectioncode+j)) ? SRS.get(sectioncode+j)[1] :'blue'">
+                                        {{j+1}}
+                        </button>
+                     
+                </div>
+
+                <div style="margin-top:50px;">
+                                <span id="method15"></span>
+                </div>
+        </div>
+        </div>
+      <br><br><br>
+  </main>
+ 
+</div>
+
+ 

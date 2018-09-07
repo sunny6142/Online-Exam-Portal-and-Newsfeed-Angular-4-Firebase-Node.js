@@ -1,0 +1,205 @@
+
+<style>
+    .demo-card-wide.mdl-card {
+      width: 412px;
+    }
+    .demo-card-wide > .mdl-card__title {
+      color: #fff;
+      height: 176px;
+      background: linear-gradient(to right, #3f3a3a,#3f3a3a);
+      -moz-box-shadow: inset 0 0 100px #050505;
+      -webkit-box-shadow: inset 0 0 100px #050505;
+      box-shadow: inset 0 0 100px #050505;
+    }
+    .demo-card-wide > .mdl-card__menu {
+      color: #fff;
+      background: linear-gradient(to right, #3f3a3a,#3f3a3a);
+      -moz-box-shadow: inset 0 0 100px #050505;
+      -webkit-box-shadow: inset 0 0 100px #050505;
+      box-shadow: inset 0 0 100px #050505;
+    }
+    </style>
+    
+    <div align="center" style="position: absolute; width: 100%; margin: 0px auto;  top:25%;">
+        Pls. Wait! Authenticating User ...<br>
+    <div *ngIf="!admin" class="mdl-spinner mdl-js-spinner is-active"></div> </div>
+    <div *ngIf="admin" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      
+        <header class="mdl-layout__header">
+          <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">
+              <span class="mdl-layout-title" style="font-family: 'Dancing Script', cursive; font-size:40px;">All Exam Corner</span>
+            </span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            
+          </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+          <span class="mdl-layout-title" >All Exam Corner</span>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" (click)="mloginnav()">Login</a>
+            <a class="mdl-navigation__link" (click)="signupnav()">Sign Up</a>
+          </nav>
+        </div>
+        <main align="center" style="background: #ffa508;"  class="mdl-layout__content">
+    
+            
+                    <div align="center" style="position: absolute; width: 100%; margin: 0px auto;  top:5%;">
+                      <div style=" max-width: 520px;">
+                        
+                          <h3 align="center">Join now - All Exam Corner</h3>
+                        
+                      <!--  <div style="width:200px; height: 200px; overflow:hidden;">
+                          <img src="https://firebasestorage.googleapis.com/v0/b/allexamcorner.appspot.com/o/144_144.png?alt=media&token=b4f86036-7c78-4938-a20a-5997a474d155" id="lock">
+                        </div> -->
+                        <span class="error" style="color:red" *ngIf="error" >{{ error }}</span>
+                        <span style="color:green" *ngIf="msg && msg != ''" >{{ msg }}</span>
+                          <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+                        
+                              <div class="form-group">
+                                  <mat-form-field class="fwidth">
+                                    <input class="form-control" minlength="3" maxlength="35" matInput id="name" #nameRef="ngModel" required placeholder="Full Name.." name="name" ngModel>
+                                  <mat-error *ngIf="nameRef.errors && (nameRef.dirty || nameRef.touched)">
+                                      <span [hidden]="!nameRef.errors.required">
+                                        Name is <strong>required</strong>
+                                      </span>
+                                      <span [hidden]="!nameRef.errors.minlength">
+                                          Name can't be less than <strong>3 char</strong>
+                                      </span>
+                                      <span [hidden]="!nameRef.errors.maxlength">
+                                          Name must not be greater than <strong>35 char</strong>
+                                      </span>
+                                  </mat-error>
+                                  </mat-form-field>
+                              </div>
+
+                              <div class="form-group">
+                                  <mat-form-field>
+                                    <mat-select placeholder="Choose one" class="form-control"  #stateRef="ngModel" required  matInput name="state" ngModel>
+                                      <mat-option (click)="Select('Institution')" value="Institution">Institution or Organization</mat-option>
+                                   <!--   <mat-option (click)="Select('Teacher')" value="Teacher">Teacher or Staff</mat-option> -->
+                                      <mat-option (click)="Select('Student')" value="Student">Student</mat-option>   
+                                    </mat-select>
+                                    
+                                    <mat-error *ngIf="stateRef.errors && (stateRef.dirty || stateRef.touched)">
+                                        <span [hidden]="!stateRef.errors.required">
+                                          Option is <strong>required</strong>
+                                        </span>
+                                        
+                                    </mat-error>  
+                                  </mat-form-field>
+
+                              </div>
+                              <div class="form-group">
+                                  <mat-form-field class="fwidth">
+                                    <input class="form-control" #contactRef="ngModel" minlength="10" pattern="^[0-9]{10}$" maxlength="10" matInput required placeholder="Contact no." name="contact" ngModel>
+                                  
+                                    <mat-error *ngIf="contactRef.errors && (contactRef.dirty || contactRef.touched)">
+                                        <span [hidden]="!contactRef.errors.pattern">
+                                          pls. enter a valid Contact no.
+                                        </span>
+                                        <span [hidden]="!contactRef.errors.required">
+                                            Contact no. is <strong>required</strong>
+                                          </span>
+                                     </mat-error>
+                                    
+                                  </mat-form-field>
+                                </div>
+                              <div *ngIf="Inst == 'Institution'" class="form-group">
+                                <div class="form-group">
+                                  <mat-form-field class="fwidth">
+                                    <input class="form-control" minlength="3" maxlength="50" matInput id="name" #InstitutionRef="ngModel" required placeholder="Institution Name.." name="institution" ngModel>
+                                  <mat-error *ngIf="InstitutionRef.errors && (InstitutionRef.dirty || InstitutionRef.touched)">
+                                      <span [hidden]="!InstitutionRef.errors.required">
+                                        Institution is <strong>required</strong>
+                                      </span>
+                                      <span [hidden]="!InstitutionRef.errors.minlength">
+                                        Institution can't be less than <strong>3 char</strong>
+                                      </span>
+                                      <span [hidden]="!InstitutionRef.errors.maxlength">
+                                        Institution must not be greater than <strong>50 char</strong>
+                                      </span>
+                                  </mat-error>
+                                  </mat-form-field>
+                              </div>
+
+                              </div>
+                              <div *ngIf="Inst == 'Student'"  class="form-group" >
+                                  <mat-form-field class="fwidth">
+                                    <input class="form-control"  #userRef="ngModel" required pattern="[a-zA-Z0-9-]+" matInput placeholder="User Id" name="user" ngModel>
+                                    <mat-error *ngIf="userRef.errors && (userRef.dirty || userRef.touched)">
+                                        <span [hidden]="!userRef.errors.pattern">
+                                          Special Char not Allowed
+                                        </span>
+                                        <span [hidden]="!userRef.errors.required">
+                                            User Id is <strong>required</strong>
+                                          </span>
+                                     </mat-error>
+                                  </mat-form-field>
+                                </div>
+                              
+                             <div *ngIf="Inst == 'Institution'" class="form-group" >
+                                 <mat-form-field class="fwidth">
+                                   <input class="form-control"  #emailRef="ngModel" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" matInput placeholder="Email" name="email" ngModel>
+                                   <mat-error *ngIf="emailRef.errors && (emailRef.dirty || emailRef.touched)">
+                                       <span [hidden]="!emailRef.errors.pattern">
+                                         pls. enter a valid Email Address
+                                       </span>
+                                       <span [hidden]="!emailRef.errors.required">
+                                           Email Address is <strong>required</strong>
+                                         </span>
+                                    </mat-error>
+                                 </mat-form-field>
+                               </div>
+                               <div class="form-group">
+                                   <mat-form-field class="fwidth">
+                                     <input class="form-control" minlength="3" maxlength="15" matInput id="password" #passwordRef="ngModel" required placeholder="Password.." name="password" ngModel>
+                                   <mat-error *ngIf="passwordRef.errors && (passwordRef.dirty || passwordRef.touched)">
+                                       <span [hidden]="!passwordRef.errors.required">
+                                         id is <strong>required</strong>
+                                       </span>
+                                       <span [hidden]="!passwordRef.errors.minlength">
+                                           id can't be less than <strong>3 char</strong>
+                                       </span>
+                                       <span [hidden]="!passwordRef.errors.maxlength">
+                                           id must not be greater than <strong>15 char</strong>
+                                       </span>
+                                   </mat-error>
+                                   </mat-form-field>
+                               </div>
+                          
+                           
+                             
+                            <button style="margin: 1.5em auto 3em auto; width: 250px;"  type="submit" [disabled]="!formData.valid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                              Create My Account
+                             </button>
+                            <!-- <a routerLink="/signup" class="alc">...By Warsi Sir</a> -->
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a routerLink="/login" id="goback">Go back</a>
+                            </div>
+                        </form>
+                        
+                    </div>
+                  </div>
+               
+            <app-footer></app-footer>
+        </main>
+        
+      </div>
+     
+    <!--<div class="form-container">
+      <img src="assets/images/lock.svg" id="lock">
+    
+        <span class="error" *ngIf="error">{{ error }}</span>
+    
+      <button (click)="loginFb()" id="fb">Login With Facebook</button><br>
+      <button (click)="loginGoogle()" id="google">Login With Google</button>
+      <button routerLink="/login-email" id="email">Email</button>
+    
+      <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
+    </div>
+    -->
+    

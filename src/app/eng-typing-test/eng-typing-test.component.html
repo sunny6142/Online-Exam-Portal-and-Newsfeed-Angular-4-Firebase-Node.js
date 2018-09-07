@@ -1,0 +1,189 @@
+<div  class="demo-layout-transparent mdl-layout mdl-js-layout">
+		<app-header></app-header>
+		<main style="background:url('https://s3.envato.com/files/236046726/img%20prev.jpg')" class="mdl-layout__content">
+				
+					<div style="width:100%; text-align: center;" class="">
+							<div align="center" style=""><a style="color: #15e343;
+							font-size: 40px;
+							font-family: initial;
+							border: 1px solid;
+							padding: 2px 120px 2px 120px; display:block;"  target="_blank" href="https://www.justdial.com/Allahabad/Ambition-Typing-Institute/0532PX532-X532-170930123700-A2G7_BZDET">
+									Ambition Typing
+							</a> </div>
+						<!-- Your content goes here -->
+						<div class="mdl-grid">
+								<div align="center" class="mdl-cell mdl-cell--2-col">
+										<img style="width:150px;" src="https://scontent.fdel11-1.fna.fbcdn.net/v/t1.0-9/11221696_821358657983768_3894047685547803169_n.jpg?oh=f09047168b359ba2129ae4654c2f907d&oe=5AF3B8F8">
+										
+									<!--	<iframe src="https://www.pornhub.com/embed/2108789380" frameborder="0" width="560" height="315" scrolling="no" allowfullscreen></iframe>
+									 selectexam -->
+										<ins class="adsbygoogle"
+										style="display:block"
+										data-ad-client="ca-pub-8773690498021691"
+										data-ad-slot="3125507431"
+										data-ad-format="auto"></ins>
+								</div>
+								<div class="mdl-cell mdl-cell--8-col">
+										
+									<!-- Option -------------- -->
+									<div class="mdl-grid">
+											<div class="mdl-cell mdl-cell--2-col">
+													<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+															<div style="font-weight: 600;" class="mdl-card__title">
+																	Gross WPM	
+															</div>
+															
+															<div class="mdl-card__actions mdl-card--border">
+																	{{ ((correctword+incorrectword)/5) / (count/60) | number :'1.0-1'}}
+															</div>
+													</div>
+												
+											</div>
+											<div class="mdl-cell mdl-cell--2-col">
+													<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+															<div style="font-weight: 600;" class="mdl-card__title">
+																	Net WPM
+															</div>
+															
+															<div class="mdl-card__actions mdl-card--border">
+																	{{ ( (((correctword+incorrectword)/5) / (count/60)) - (incorrectword/(count/60)) ) | number :'1.0-1' }}
+															</div>
+													</div>
+												
+											</div>
+											<div class="mdl-cell mdl-cell--2-col">
+													<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+															<div style="font-weight: 600;" class="mdl-card__title">
+																	Accuracy
+															</div>
+															
+															<div class="mdl-card__actions mdl-card--border">
+																	{{ (correctword/(correctword+incorrectword)) * 100 | number :'1.0-1' }} %
+															</div>
+													</div>
+							
+											</div>
+											<div class="mdl-cell mdl-cell--2-col">
+													<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+															<div style="font-weight: 600;" class="mdl-card__title">
+																	Back Press
+															</div>
+															
+															<div class="mdl-card__actions mdl-card--border">
+																	{{ countbackpress }}
+															</div>
+													</div>
+												
+											</div>
+											<div class="mdl-cell mdl-cell--2-col">
+												
+														<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+																<div style="font-weight: 600;" class="mdl-card__title">
+																		Time
+																</div>
+																
+																<div class="mdl-card__actions mdl-card--border">
+																		<span *ngIf="count"> {{ Math.floor( count/(60*60) ) }} : {{ Math.floor((count/60) %60) }} : {{count%60}}</span>
+																		
+																</div>
+														</div>
+													
+											</div>
+											<div class="mdl-cell mdl-cell--2-col"> 
+													<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+															<div style="font-weight: 600;" class="mdl-card__title">
+																	Error
+															</div>
+															
+															<div class="mdl-card__actions mdl-card--border">
+																	<span style="color:red">{{incorrectword}}</span>/{{(correctword+incorrectword) }}
+															</div>
+													</div>
+												
+											</div>
+											
+										
+									</div>
+									<!-- -BUTTON ----------- -->
+									<div class="mdl-grid">
+											<div class="mdl-cell mdl-cell--2-col">
+													<button (click)="StartTest()">
+														<span class="mdl-chip mdl-chip--contact">
+																<span style="background-color:green" class="mdl-chip__contact  mdl-color-text--white">S</span>
+																<span class="mdl-chip__text">Start Typing</span>
+															</span>
+													</button>
+											</div>
+											<div class="mdl-cell mdl-cell--2-col">
+													<button (click)="Stop()">
+														<span class="mdl-chip mdl-chip--contact">
+																<span style="background-color:red" class="mdl-chip__contact  mdl-color-text--white">S</span>
+																<span class="mdl-chip__text">Stop Typing</span>
+														</span>
+													</button>
+											</div>
+											
+											
+											<div class="mdl-cell mdl-cell--2-col">
+											
+															<button [matMenuTriggerFor]="menu">
+																<span class="mdl-chip mdl-chip--contact">
+																	<span style="background-color:blue" class="mdl-chip__contact  mdl-color-text--white">C</span>
+																	<span class="mdl-chip__text">{{Menu}}</span>
+																</span>
+															</button>
+															<mat-menu id="mmenu" style="max-height: 200px;" #menu="matMenu">
+															  <button (click)="change(sub)" mat-menu-item *ngFor="let sub of selectsec"> Test :{{ sub.val }} </button>
+															  
+															</mat-menu>
+														
+											</div>
+
+											<div class="mdl-cell mdl-cell--2-col">
+													<button (click)="View()">
+														<span class="mdl-chip mdl-chip--contact">
+																<span style="background-color:yellow" class="mdl-chip__contact  mdl-color-text--white">S</span>
+																<span class="mdl-chip__text">{{Viewval}}</span>
+														</span>
+													</button>
+												</div>
+											
+											
+									</div>
+									<!--- Text Input Field -->
+										<div  class="target mono" style="line-height:1.15; width: 100%; overflow: hidden;" >{{txt | slice:Cutter}}</div>
+										<div *ngIf='val != ""'>
+											<!--	<textarea disabled  class="mdl-textfield__input" type="text" rows= "15" id="sample5" >{{myField | safeHtml}}</textarea>
+											-->
+											<div class="mdl-textfield__input" id="fitin" [innerHTML]="val | safeHtml"></div><br>
+											
+										</div>
+										<div *ngIf="showview">
+												<div style="background:white;" class="card-feed-entry" *ngFor="let feed of feeds.items">
+															<div>{{feed.title}}</div>
+															<div>{{feed.content}}{{feed.author}} - {{feed.pubDate | date:'dd-MM-yyyy'}}</div>
+															<div>{{feed.description}}{{feed.link}}</div>
+												</div>
+											</div>
+								</div>
+
+								<!-- -------- -->
+
+								<div class="mdl-cell mdl-cell--2-col">2
+										<ng-adsense
+										[adClient]="'ca-pub-8773690498021691'"
+										[adSlot]="3125507431"
+										[display]="'inline-block'"
+										[width]="120"
+										[height]="208">
+									  </ng-adsense>
+								</div>
+						</div>
+					</div>
+					
+					  
+		</main>
+		
+</div>
+	  
+

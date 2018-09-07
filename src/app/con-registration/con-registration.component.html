@@ -1,0 +1,158 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <app-header></app-header>
+    
+    <main  class="mdl-layout__content">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--3-col">
+          <!--- Ads are here ---------------------------- -->
+          <span class="mdl-layout--large-screen-only" id="method7"></span>
+        </div>
+        <div align="center" class="mdl-cell mdl-cell--6-col">
+            <div class="logo">
+              <img style=" width: 100px; height: auto; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+                " src ="">
+            </div>
+            <div class="organisation">
+              All Corner Organization Test
+            </div>
+            <div >
+                <ul class="tim">
+                    
+                    
+                  </ul>
+            </div>
+            <div class="container">
+                <div>
+                    <div class="Instructions">Instructions</div>
+                    
+                    <div class="Instlist">
+                      <ol >
+                        <li> Total No. of question means Total No. of question in all section </li>
+                        <li> Marks for Sec. means marks for each question in that particaular section</li>
+                        <li> Write Exam time is in Minutes </li>
+                      </ol>
+                    </div>
+                </div>
+                <!--------------------------------------------------------------------------------------------------- -->
+                
+                <mat-horizontal-stepper [linear]="isLinear">
+                  <mat-step [stepControl]="firstFormGroup">
+                    <form [formGroup]="firstFormGroup" (ngSubmit)="check()">
+                      <ng-template matStepLabel>Fill out your Contact Detail</ng-template>
+                      <mat-form-field>
+                        <input matInput placeholder="Organization Name" formControlName="organization" required>
+                      </mat-form-field><br>
+                      <mat-form-field>
+                        <input matInput placeholder="Name" minlength="5" maxlength="25" formControlName="name" required>
+                      </mat-form-field><br>
+                      <mat-form-field>
+                        <input matInput placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" formControlName="email" required>
+                      </mat-form-field><br>
+                      <mat-form-field>
+                        <input matInput placeholder="Contact" minlength="10" pattern="^[0-9]{10}$" maxlength="10" formControlName="contact" required>
+                      </mat-form-field>
+                      <div>
+                        <button [disabled]="!firstFormGroup.valid" type="submit" mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup" (ngSubmit)="check2()">
+                      <ng-template matStepLabel>Fill out Exam section</ng-template>
+                      <mat-form-field>
+                        <input matInput placeholder="Exam time (min)" formControlName="time" minlength="2" maxlength="3" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input matInput placeholder="total no. of question" formControlName="noq" minlength="1"  maxlength="3" required>
+                      </mat-form-field><br>
+                      <div formGroupName="sub">
+                          <mat-form-field>
+                              <input matInput placeholder="Sec 1" formControlName="sec1" maxlength="10" required>
+                          </mat-form-field>
+                          <mat-form-field>
+                              <input matInput placeholder="Marks for Sec 1" formControlName="noq1" minlength="1" maxlength="3" required>
+                          </mat-form-field><br>
+                          <mat-form-field>
+                              <input matInput placeholder="Sec 2" formControlName="sec2" maxlength="10" >
+                          </mat-form-field>
+                          <mat-form-field>
+                              <input matInput placeholder="Marks for Sec 2" formControlName="noq2" minlength="1"  maxlength="3" >
+                          </mat-form-field><br>
+                          <mat-form-field>
+                              <input matInput placeholder="Sec 3" formControlName="sec3" maxlength="10" >
+                          </mat-form-field>
+                          <mat-form-field>
+                              <input matInput placeholder="Marks for Sec 3" formControlName="noq3" minlength="1"  maxlength="3" >
+                          </mat-form-field><br>
+                          <mat-form-field>
+                              <input matInput placeholder="Sec 4" formControlName="sec4" maxlength="10" >
+                          </mat-form-field>
+                          <mat-form-field>
+                              <input matInput placeholder="Marks for Sec 4" formControlName="noq4" minlength="1"  maxlength="3">
+                          </mat-form-field><br>
+                          <mat-form-field>
+                              <input matInput placeholder="Sec 5" formControlName="sec5" maxlength="10" >
+                          </mat-form-field>
+                          <mat-form-field>
+                              <input matInput placeholder="Marks for Sec 5" formControlName="noq5" minlength="1"  maxlength="3" >
+                          </mat-form-field><br>
+                          
+                      </div>
+                    
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button type="submit" [disabled]="!secondFormGroup.valid" mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step [stepControl]="ThiredFormGroup">
+                      <form [formGroup]="ThiredFormGroup" (ngSubmit)="check3()">
+                        <ng-template matStepLabel>Fill out Detail</ng-template><br> 
+                        You are ready to set Question Paper.<br> 
+                        Your Exam Code {{ Key }}<br> 
+                        <mat-form-field>
+                          <input matInput placeholder="Exam Name/Tittle" rows= "1" formControlName="tittle" required>
+                        </mat-form-field><br>
+                        <mat-form-field>
+                          <input matInput placeholder="Exam Category" rows= "1" formControlName="category" required>
+                        </mat-form-field><br>
+                        <mat-form-field>
+                          <input matInput placeholder="Exam Detail" rows= "3" formControlName="detail" required>
+                        </mat-form-field><br>
+                        <mat-form-field>
+                          <input matInput placeholder="Exam Instruction" minlength="10" maxlength="250" formControlName="instruction" required>
+                        </mat-form-field><br>
+                      
+                            <!----Upload -->
+                            
+                            <!-- ------- -->
+                       
+                        <div>
+                          <button [disabled]="!ThiredFormGroup.valid" type="submit" mat-button matStepperNext>Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                    You are ready to set Question Paper.<br> 
+                    Your Exam Code {{ Key }}
+                    <div>
+                      <button mat-button (click)="GoSetQuestion()">Go</button>
+                    </div>
+                  </mat-step>
+                </mat-horizontal-stepper>
+                
+                <!--- ------------------------ -->
+                
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--3-col">           
+          <!--- Ads are here ---------------------------- --> 
+            <span class="mdl-layout--large-screen-only" id="method8"></span>
+        </div>
+      </div>
+      <app-footer></app-footer>
+    </main>
+    
+      
+  </div>

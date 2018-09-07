@@ -1,0 +1,371 @@
+<div  class="demo-layout-transparent mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+            <div class="mdl-layout__header-row">
+            <!-- Title -->
+                    <table style="margin-top: 15px;">
+                            <tr>
+                                    <td>
+                                            <span style="font-family: 'Dancing Script', cursive; font-size:40px; text-shadow: 1px 1px 0 #777;">
+                                                    All Exam Corner</span>
+                                    </td>
+                            </tr>
+                            <tr style="background:white;">
+                                    <td> A Portal For Exam Corner</td>                       
+                            </tr>
+                                    
+                    </table> 
+                                    
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" >
+                        <span *ngIf="countDown | async as countValue"> {{ Math.floor( countValue/(60*60) ) }} : {{ Math.floor((countValue/60) %60) }} : {{countValue%60}}</span>
+                    </a>
+                    <a class="mdl-navigation__link" href="">Contact Us</a>
+                    <a class="mdl-navigation__link" href="">Donate</a>
+                    <a class="mdl-navigation__link" href="">Help</a>
+            </nav>
+            </div>
+    </header>
+
+<main class="mdl-layout__content">
+
+
+    <div class="mdl-grid">
+    
+    <div class="mdl-cell mdl-cell--1-col"><!--Ads are here -->
+        
+    </div>
+
+    <div class="mdl-cell mdl-cell--7-col" >
+            <!--
+            <h2>Upload a File</h2>
+            <form ngNoForm>
+              <input id="file" name="file" type="file" >
+              <button (click)="upload()" type="button">Upload</button>
+            </form>
+              <h2>File Gallery</h2>
+              <div style="overflow:hidden;">
+                  <div *ngFor="let img of imageList | async" style="position:relative;width:100px;height:100px;float:left;display:flex;justify-content:center;align-items:center;">
+                      <img [src]="img.downloadURL | async" style="max-width:100px;max-height:100px;">
+                      <button (click)="delete(img)" style="position:absolute;top:2px;right:2px;">[x]</button>
+                  </div>
+              </div>
+            -->
+            <span id="method10"></span>
+                    <div *ngFor="let question of selectquestion | async ; let j= index">
+                          
+                           <span *ngIf="question.qno == qno">
+                               <form #userform="ngForm" (ngSubmit)="onSubmit(userform.value)" >   
+                                    <div class="mdl-card__supporting-text">
+                                         <span style="font-size: 20px;
+                                         color: #8D6E63;
+                                         font-family: Verdana;
+                                         text-shadow: 0px 0.5px 0 #8D6E63;">  Qno. {{qno}}:
+                                         </span>      
+                                         
+                                         <span [innerHTML]="question.question | safeHtml"> </span>
+                                            <div class="form-group">
+                                                <mat-form-field class="question_input">
+                                                  <textarea class="form-control question_field" minlength="10" maxlength="1000" matInput id="question" #quesRef="ngModel" required [(ngModel)] = "question.question" name="question" (ngModelChange)="onchange($event)" ></textarea>
+                                                 <mat-error *ngIf="quesRef.errors && (quesRef.dirty || quesRef.touched)">
+                                                    <span [hidden]="!quesRef.errors.required">
+                                                        question is <strong>required</strong>
+                                                    </span>
+                                                    <span [hidden]="!quesRef.errors.minlength">
+                                                        question can't be less than <strong>10 char</strong>
+                                                    </span>
+                                                    <span [hidden]="!quesRef.errors.maxlength">
+                                                        question must not be greater than <strong>1000 char</strong>
+                                                    </span>
+                                                 </mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <!-- <div class="form-group">
+                                                <mat-form-field class="question_input">
+                                                  <textarea class="form-control question_field" minlength="3" maxlength="1000" matInput id="question_description" #quesRefdescription="ngModel" [ngModel] = "question.description" name="question_description" ></textarea>
+                                                 <mat-error *ngIf="quesRefdescription.errors && (quesRefdescription.dirty || quesRefdescription.touched)">
+                                                    
+                                                    <span [hidden]="!quesRefdescription.errors.minlength">
+                                                        question description can't be less than <strong>3 char</strong>
+                                                    </span>
+                                                    <span [hidden]="!quesRefdescription.errors.maxlength">
+                                                        question description must not be greater than <strong>1000 char</strong>
+                                                    </span>
+                                                 </mat-error>
+                                                </mat-form-field>
+                                            </div> -->
+                                     </div>
+                                         
+                                       <div style="margin-left: 30px;">
+                                            
+                                            <div class="form-group">
+                                                        <mat-form-field>
+                                                          <input class="form-control" minlength="1" placeholder="Option A" maxlength="200" matInput id="optionA" #ARef="ngModel" required [(ngModel)] = "question.options.A" name="A" (ngModelChange)="onchange($event)">
+                                                        
+                                                          <mat-error *ngIf="ARef.errors && (ARef.dirty || ARef.touched)">
+                                                            <span [hidden]="!ARef.errors.required">
+                                                                Option is <strong>required</strong>
+                                                            </span>
+                                                            <span [hidden]="!ARef.errors.minlength">
+                                                                        Option can't be less than <strong>5 char</strong>
+                                                            </span>
+                                                            <span [hidden]="!ARef.errors.maxlength">
+                                                                        Option must not be greater than <strong>200 char</strong>
+                                                            </span>
+                                                         </mat-error>
+                                                        </mat-form-field> <span style="margin-left:20px" [innerHTML]="question.options.A | safeHtml"> </span>
+                                             </div>  
+                                             <div class="form-group">
+                                                        <mat-form-field>
+                                                          <input class="form-control" minlength="1" placeholder="Option B" maxlength="200" matInput id="optionB" #BRef="ngModel" required [(ngModel)] = "question.options.B" name="B" (ngModelChange)="onchange($event)" >
+                                                         <mat-error *ngIf="BRef.errors && (BRef.dirty || BRef.touched)">
+                                                            <span [hidden]="!BRef.errors.required">
+                                                                        Option is <strong>required</strong>
+                                                            </span>
+                                                            <span [hidden]="!BRef.errors.minlength">
+                                                                        Option can't be less than <strong>5 char</strong>
+                                                            </span>
+                                                            <span [hidden]="!BRef.errors.maxlength">
+                                                                        Option must not be greater than <strong>200 char</strong>
+                                                            </span>
+                                                         </mat-error>
+                                                        </mat-form-field><span style="margin-left:20px" [innerHTML]="question.options.B | safeHtml"> </span>
+                                             </div>
+                                             <div class="form-group">
+                                                        <mat-form-field>
+                                                          <input class="form-control" minlength="1" placeholder="Option C" maxlength="200" matInput id="optionC" #CRef="ngModel" required [(ngModel)] = "question.options.C" name="C" (ngModelChange)="onchange($event)">
+                                                         <mat-error *ngIf="CRef.errors && (CRef.dirty || CRef.touched)">
+                                                            <span [hidden]="!CRef.errors.required">
+                                                                        Option is <strong>required</strong>
+                                                            </span>
+                                                            <span [hidden]="!CRef.errors.minlength">
+                                                                        Option can't be less than <strong>5 char</strong>
+                                                            </span>
+                                                            <span [hidden]="!CRef.errors.maxlength">
+                                                                        Option must not be greater than <strong>200 char</strong>
+                                                            </span>
+                                                         </mat-error>
+                                                        </mat-form-field><span style="margin-left:20px" [innerHTML]="question.options.C | safeHtml"> </span>
+                                             </div>
+                                             <div class="form-group">
+                                                        <mat-form-field>
+                                                          <input class="form-control" minlength="1" placeholder="Option D" maxlength="200" matInput id="optionD" #DRef="ngModel" required [(ngModel)] = "question.options.D" name="D" (ngModelChange)="onchange($event)">
+                                                         <mat-error *ngIf="DRef.errors && (DRef.dirty || DRef.touched)">
+                                                            <span [hidden]="!DRef.errors.required">
+                                                                        Option is <strong>required</strong>
+                                                            </span>
+                                                            <span [hidden]="!DRef.errors.minlength">
+                                                                        Option can't be less than <strong>5 char</strong>
+                                                            </span>
+                                                            <span [hidden]="!DRef.errors.maxlength">
+                                                                        Option must not be greater than <strong>200 char</strong>
+                                                            </span>
+                                                         </mat-error>
+                                                        </mat-form-field><span style="margin-left:20px" [innerHTML]="question.options.D | safeHtml"> </span>
+                                             </div>
+                                            
+                                        </div>
+                                        <div  align="center" style="margin:10px">
+                                                <span style="display: ruby-base-container;"> <div>Option Selected : </div> <button style="width:100px" mat-button [matMenuTriggerFor]="menu">{{question.correctoptions}}</button> </span>
+                                                <mat-menu #menu="matMenu">
+                                                        <button (click)="SelectedOption('A')" mat-menu-item > A  </button>
+                                                        <button (click)="SelectedOption('B')" mat-menu-item > B  </button>             
+                                                        <button (click)="SelectedOption('C')" mat-menu-item > C  </button>
+                                                        <button (click)="SelectedOption('D')" mat-menu-item > D  </button>
+                                                </mat-menu>
+                                         </div>
+                                         <div  align="center" style="margin:10px">
+                                                        <span style="display: ruby-base-container;"> <div>Select Correct Option (if you want to change): </div> <button style="width:100px" mat-button [matMenuTriggerFor]="menu">{{option}}</button> </span>
+                                                        <mat-menu #menu="matMenu">
+                                                                <button (click)="SelectedOption('A')" mat-menu-item > A  </button>
+                                                                <button (click)="SelectedOption('B')" mat-menu-item > B  </button>             
+                                                                <button (click)="SelectedOption('C')" mat-menu-item > C  </button>
+                                                                <button (click)="SelectedOption('D')" mat-menu-item > D  </button>
+                                                        </mat-menu>
+                                         </div>
+                                         <div class="button-row">
+                                                        <button (click)="Previous()"  mat-button color="primary" [disabled]="!(1 < qno)" >Previous</button>
+                                                        <button (click)="reminder(qno)" mat-button color="warn">Reminder</button>
+                                                        <button (click)="save(qno , userform.value)" [disabled]="!userform.form.valid" mat-button style="color:green">Save</button>
+                                                        <button (click)="skip(qno)" [disabled]="!(((selectquestion | async)?.length) > qno)" mat-button color="accent">Next</button>
+                                                </div>
+                                 
+                                  </form>  
+                           </span>
+                    </div>
+                    <div *ngIf="sectioncode">
+                           <span *ngIf="( ( (selectquestion | async)?.length < qno))">
+                             <form #userform2="ngForm" (ngSubmit)="onSubmit(userform2.value)" >    
+                                <div class="mdl-card__supporting-text">
+                                     <span style="font-size: 20px;
+                                     color: #8D6E63;
+                                     font-family: Verdana;
+                                     text-shadow: 0px 0.5px 0 #8D6E63;">  Qno. {{qno}}:
+                                     </span>      
+                                     <span [innerHTML]="new_question | safeHtml"> </span>
+                                        <div class="form-group">
+                                            <mat-form-field class="question_input">
+                                              <textarea class="form-control question_field" minlength="10" maxlength="1000" matInput id="newquestion" #newquesRef="ngModel" required ngModel placeholder="Enter Question Here ...." name="question" (ngModelChange)="onchange($event)"></textarea>
+                                             <mat-error *ngIf="newquesRef.errors && (newquesRef.dirty || newquesRef.touched)">
+                                                <span [hidden]="!newquesRef.errors.required">
+                                                    question is <strong>required</strong>
+                                                </span>
+                                                <span [hidden]="!newquesRef.errors.minlength">
+                                                    question can't be less than <strong>10 char</strong>
+                                                </span>
+                                                <span [hidden]="!newquesRef.errors.maxlength">
+                                                    question must not be greater than <strong>500 char</strong>
+                                                </span>
+                                             </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                      <!--  <div class="form-group">
+                                                <mat-form-field class="question_input">
+                                                  <textarea class="form-control question_field" minlength="3" maxlength="1000" matInput id="question_description" #newquesRefdescription="ngModel" ngModel placeholder="Enter Directions Here ...." name="question_description" ></textarea>
+                                                 <mat-error *ngIf="newquesRefdescription.errors && (newquesRefdescription.dirty || newquesRefdescription.touched)">
+                                                    
+                                                    <span [hidden]="!newquesRefdescription.errors.minlength">
+                                                        question description can't be less than <strong>3 char</strong>
+                                                    </span>
+                                                    <span [hidden]="!newquesRefdescription.errors.maxlength">
+                                                        question description must not be greater than <strong>1000 char</strong>
+                                                    </span>
+                                                 </mat-error>
+                                                </mat-form-field>
+                                            </div>  -->
+                                 </div>
+                                     
+                                   <div style="margin-left: 30px;">
+                                        
+                                        <div class="form-group">
+                                                    <mat-form-field>
+                                                      <input class="form-control" minlength="1" placeholder="Option A" maxlength="200" matInput id="newoptionA" #newARef="ngModel" required ngModel name="A" (ngModelChange)="onchange($event)" >
+                                                     <mat-error *ngIf="newARef.errors && (newARef.dirty || newARef.touched)">
+                                                        <span [hidden]="!newARef.errors.required">
+                                                            Option is <strong>required</strong>
+                                                        </span>
+                                                        <span [hidden]="!newARef.errors.minlength">
+                                                                    Option can't be less than <strong>5 char</strong>
+                                                        </span>
+                                                        <span [hidden]="!newARef.errors.maxlength">
+                                                                    Option must not be greater than <strong>200 char</strong>
+                                                        </span>
+                                                     </mat-error>
+                                                    </mat-form-field> <span style="margin-left:20px" [innerHTML]="option_A | safeHtml"> </span>
+                                         </div>
+                                         <div class="form-group">
+                                                    <mat-form-field>
+                                                      <input class="form-control" minlength="1" placeholder="Option B" maxlength="200" matInput id="newoptionB" #newBRef="ngModel" required ngModel name="B" (ngModelChange)="onchange($event)">
+                                                     <mat-error *ngIf="newBRef.errors && (newBRef.dirty || newBRef.touched)">
+                                                        <span [hidden]="!newBRef.errors.required">
+                                                                    Option is <strong>required</strong>
+                                                        </span>
+                                                        <span [hidden]="!newBRef.errors.minlength">
+                                                                    Option can't be less than <strong>5 char</strong>
+                                                        </span>
+                                                        <span [hidden]="!newBRef.errors.maxlength">
+                                                                    Option must not be greater than <strong>200 char</strong>
+                                                        </span>
+                                                     </mat-error>
+                                                    </mat-form-field> <span style="margin-left:20px" [innerHTML]="option_B | safeHtml"> </span>
+                                         </div>
+                                         <div class="form-group">
+                                                    <mat-form-field>
+                                                      <input class="form-control" minlength="1" placeholder="Option C" maxlength="200" matInput id="newoptionC" #newCRef="ngModel" required ngModel name="C" (ngModelChange)="onchange($event)">
+                                                     <mat-error *ngIf="newCRef.errors && (newCRef.dirty || newCRef.touched)">
+                                                        <span [hidden]="!newCRef.errors.required">
+                                                                    Option is <strong>required</strong>
+                                                        </span>
+                                                        <span [hidden]="!newCRef.errors.minlength">
+                                                                    Option can't be less than <strong>5 char</strong>
+                                                        </span>
+                                                        <span [hidden]="!newCRef.errors.maxlength">
+                                                                    Option must not be greater than <strong>200 char</strong>
+                                                        </span>
+                                                     </mat-error>
+                                                    </mat-form-field> <span style="margin-left:20px" [innerHTML]="option_C | safeHtml"> </span>
+                                         </div>
+                                         <div class="form-group">
+                                                    <mat-form-field>
+                                                      <input class="form-control" minlength="1" placeholder="Option D" maxlength="200" matInput id="newoptionD" #newDRef="ngModel" required ngModel name="D" (ngModelChange)="onchange($event)">
+                                                     <mat-error *ngIf="newDRef.errors && (newDRef.dirty || newDRef.touched)">
+                                                        <span [hidden]="!newDRef.errors.required">
+                                                                    Option is <strong>required</strong>
+                                                        </span>
+                                                        <span [hidden]="!newDRef.errors.minlength">
+                                                                    Option can't be less than <strong>5 char</strong>
+                                                        </span>
+                                                        <span [hidden]="!newDRef.errors.maxlength">
+                                                                    Option must not be greater than <strong>200 char</strong>
+                                                        </span>
+                                                     </mat-error>
+                                                    </mat-form-field>  <span style="margin-left:20px" [innerHTML]="option_D | safeHtml"> </span>
+                                         </div>
+                                        
+                                    </div>
+                                    <div  align="center" style="margin:10px">
+                                        <span style="display: ruby-base-container;"> <div>Select Correct Option : </div> <button style="width:100px" mat-button [matMenuTriggerFor]="menu">{{option}}</button> </span>
+                                        <mat-menu #menu="matMenu">
+                                                <button (click)="SelectedOption('A')" mat-menu-item > A  </button>
+                                                <button (click)="SelectedOption('B')" mat-menu-item > B  </button>             
+                                                <button (click)="SelectedOption('C')" mat-menu-item > C  </button>
+                                                <button (click)="SelectedOption('D')" mat-menu-item > D  </button>
+                                        </mat-menu>
+                                    </div>
+                                    
+                                    <div class="button-row">
+                                                <button (click)="Previous()"  mat-button color="primary" [disabled]="!(1 < qno)" >Previous</button>
+                                                <button (click)="reminder(qno)" mat-button color="warn">Reminder</button>
+                                                <button (click)="save(qno , userform2.value)" [disabled]="!userform2.form.valid" mat-button style="color:green">Save</button>
+                                                <button (click)="skip(qno)" [disabled]="!(((selectquestion | async)?.length) > qno)" mat-button color="accent">Next</button>
+                                        </div>
+                         
+                          </form>  
+                       </span>
+                        
+                    </div>
+
+                            
+    </div>
+
+    <!-- Left corner -->
+    <div  class="mdl-cell mdl-cell--4-col">
+            <div *ngIf="selectsect" align="center">
+                    <span style="display: ruby-base-container;"> <div>Selection Section : </div> <button style="width:100px" mat-button [matMenuTriggerFor]="menu">Menu <i class="material-icons">keyboard_arrow_down</i></button> </span>
+                    <mat-menu #menu="matMenu">
+                            <button (click)="selectcat(sub)" mat-menu-item *ngFor="let sub of selectsect | async" >
+                                            {{ sub.subject }} 
+                            </button>
+                    </mat-menu>
+                    
+                        <button [hidden] ="(publishstatus == 'publish')" color="primary" class="btn btn-primary" style="width:100px; background-color:tomato" mat-button (click)="publish()">
+                            <b>  Publish </b>
+                       </button>
+               
+                  
+                       <button [hidden] ="!(publishstatus == 'publish')" color="primary" class="btn btn-primary" style="width:100px; background-color:tomato" mat-button (click)="unpublish()">
+                        <b>  Un_Publish </b>
+                       </button>
+                  
+            </div>
+
+            <div  *ngIf="selectquestion">
+                    <button (click)="changequstion(j+1)" class="selectquebutton" mat-mini-fab  *ngFor="let i of counter((selectquestion | async)?.length + 1).fill(1) ; let j= index" [style.background-color]="(SRS.has(sectioncode+j)) ? SRS.get(sectioncode+j)[1] :'blue'">
+                        <div *ngIf="j+1 == (selectquestion | async)?.length +1; else elseBlock">+</div>       
+                        <ng-template #elseBlock >  {{j+1}} </ng-template> 
+                    </button>
+            </div>
+            <div style="margin-top:50px;">
+                    <span style="margin-top:10px;" id="method12"></span>
+                    <span style="margin-top:10px;" id="method11"></span>
+            </div>
+    </div>
+    </div>
+    <br><br><br><br><br>
+</main>
+
+</div>
+

@@ -1,0 +1,87 @@
+<style>
+    .demo-layout-transparent { 
+    /*  background: url('../assets/demos/transparent.jpg') center / cover; */
+
+    }
+    .demo-layout-transparent .mdl-layout__header,
+    .demo-layout-transparent .mdl-layout__drawer-button {
+      /* This background is dark, so we set text to white. Use 87% black instead if
+         your background is light. */
+      color: white;
+    }
+    </style>
+    <style>
+        .demo-card-wide.mdl-card {
+            width:100%;
+        }
+        .demo-card-wide > .mdl-card__title {
+          color: #fff;
+          height: 176px;
+     /*    background: url('../assets/demos/welcome_card.jpg') center / cover; */
+        }
+        .demo-card-wide > .mdl-card__menu {
+          color: #fff;
+        }
+        </style>
+    
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title" style="font-size: 16px;">Current Affair : {{title}}</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Current Affair</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" (click)="change(sub)" *ngFor="let sub of selectsec">{{ sub.val }}</a>
+        </nav>
+      </div>
+      <main id ="zone" align="center" class="mdl-layout__content">
+        <div [hidden]="hbutton" align="center" if="hshow" style="position:fixed; top: 80px; margin: 0px auto;width: 98%; z-index: 2; opacity: 0.9;">
+          <div style="width: 99%; background:black; ">
+              <p style="color:green; font-size:18px; padding: 10px 0px;" *ngIf="!player && err == '' && !err">Translating...</p>
+              <p style="color:white; font-size:18px; padding: 10px 0px;"*ngIf="player"><b >{{player[0][0][0]}}</b></p>
+              <p style="color:red; font-size:18px; padding: 10px 0px;" *ngIf="err">Check Your Internet Connection...</p>
+          </div>
+        </div>
+          <div  style="position: absolute; width: 100%; margin: 0px auto; top: 1%; " align="center" [hidden] = "show" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+          <div style="position: absolute; width: 100%; margin: 0px auto; top: 1%; " align="center" *ngIf="feeds">
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp" *ngFor="let item of feeds.items ">
+                <div *ngIf="!item.enclosure.link">
+                  <img class="mdl-card__title" [src]="filterimage(item.description)">
+                </div>
+                <div *ngIf="item.enclosure.link">
+                    <img class="mdl-card__title" [src]="item.enclosure.link">
+                  </div>
+               
+                <div class="mdl-card__supporting-text" [innerHTML]="item.title | safeHtml">
+                
+                </div>
+               
+                <p style="text-align: justify; padding: 15px;" [innerHTML]="RemoveImg(item.description) | safeHtml"></p>
+              <!--  <div class="mdl-card__actions mdl-card--border">
+                  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                    Read More
+                  </a>
+                </div> -->
+                
+              </div>
+            </div>
+            <br><br><br><br><br>
+            <br><br><br>
+      </main>
+      <div [hidden]="hshow" align="center" style="position: fixed; bottom: 10px; z-index: 10; margin: 0px auto; width: 100%; background:black; opacity:0.8;">
+          <button style="font-weight: 900; font-size: 15px;" (click)="hideitem()" id="#hbutton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+              hide
+            </button><p style="font-size: 15px;
+            padding: 5px;
+            padding-bottom:0px;
+            color: white;
+            height: 100%;">Hold text longer to select more text</p>
+        </div>
+    </div>

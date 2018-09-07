@@ -1,0 +1,98 @@
+input.ng-invalid{
+    border-right:5px solid red;
+    padding-left: 5px;
+    border-radius: 10px;
+}
+
+input.ng-valid{
+    border-right: 5px solid green;
+    padding-left: 5px;
+    border-radius: 10px;
+}
+
+input::-webkit-input-placeholder { /* WebKit browsers */
+    padding-left: 5px;
+  }
+  input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    padding-left: 5px;
+  }
+  input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    padding-left: 5px;
+  }
+  input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    padding-left: 5px;
+  }
+div.organisation{
+    border: 0;
+    font: inherit;
+    margin: 30px;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+    color: #2ec866;
+    text-align: center !important;
+    font-size: 26px;
+    text-shadow: 1px 1px 0 #05a5d1;
+}
+
+div.Instructions{
+    border: 0;
+    font: inherit;
+    margin: 20px;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+    color: #2ec866;
+    text-align: left !important;
+    font-size: 18px;
+    text-shadow: 1px 1px 0 #05a5d1;
+    padding-top: 20px;
+}
+
+div.Instlist{
+    border: 0;
+    font: inherit;
+    margin: 10px;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+    color: #111;
+    text-align: left !important;
+    font-size: 16px;
+    margin: 5px;
+    margin-left: 25px;
+}
+
+div.container{
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+    border-radius: 10px;
+    background: #eef;
+}
+
+.mdl-layout__content{
+    background: #fff;
+}
+
+.nmin{
+    margin-left: 10px;
+    margin-right: 10px;
+    text-shadow: 0px 0.5px 0 #111;
+}
+
+.tim{
+    text-align: center !important;
+    display: inline-flex;
+}
+
+.fwidth{
+    width: 45%;
+    max-width: 320px;
+    min-width: 229px;
+}
+  
+.form-group{
+    margin: 10px;
+}
+ 
+
+  

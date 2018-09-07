@@ -1,0 +1,111 @@
+<div  style="float:left; margin:10px;" class="demo-card-wide mdl-card mdl-shadow--2dp mdl-layout--large-screen-only" >
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Your Exam</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Enter in Exam Room
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a (click)="navigate()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      Get Started
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" >
+      <button mat-menu-item  >
+        <mat-icon>voicemail</mat-icon>
+        <span > option </span>
+      </button>
+    </mat-menu>
+    
+  </div>
+</div>
+
+<div style="float:left; margin:10px;" class="demo-card-wide mdl-card mdl-shadow--2dp mdl-layout--large-screen-only" >
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Typing Exam</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+       Enter in Exam Room
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a href="/engtypingtest" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        Get Started
+      </a>
+    </div>
+    <div class="mdl-card__menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu" >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" >
+        <button mat-menu-item  >
+          <mat-icon>voicemail</mat-icon>
+          <span > English </span>
+        </button>
+        <button mat-menu-item  >
+            <mat-icon>voicemail</mat-icon>
+            <span > Others-Comming Soon </span>
+          </button>
+      </mat-menu>
+      
+    </div>
+  </div>
+
+  <div  style="margin:20px 0px"  class="demo-card-wide mdl-card mdl-shadow--2dp mdl-layout--small-screen-only">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Your Exam</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      Enter in Exam Room
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a (click)="navigate()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        Get Started
+      </a>
+    </div>
+    <div class="mdl-card__menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu" >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" >
+        <button mat-menu-item  >
+          <mat-icon>voicemail</mat-icon>
+          <span > option </span>
+        </button>
+      </mat-menu>
+      
+    </div>
+  </div>
+  
+  <div style="margin:20px 0px"  class="demo-card-wide mdl-card mdl-shadow--2dp mdl-layout--small-screen-only">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Typing Exam</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+         Enter in Exam Room
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a href="/engtypingtest" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Get Started
+        </a>
+      </div>
+      <div class="mdl-card__menu">
+        <button mat-icon-button [matMenuTriggerFor]="menu" >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" >
+          <button mat-menu-item  >
+            <mat-icon>voicemail</mat-icon>
+            <span > English </span>
+          </button>
+          <button mat-menu-item  >
+              <mat-icon>voicemail</mat-icon>
+              <span > Others-Comming Soon </span>
+            </button>
+        </mat-menu>
+        
+      </div>
+    </div>
