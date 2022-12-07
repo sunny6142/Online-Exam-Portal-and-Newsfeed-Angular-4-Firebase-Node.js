@@ -12,7 +12,7 @@
     "@types/google-apps-script": "0.0.18",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "firebase-admin": "^4.1.1",
     "firebase-functions": "^0.5.1",
     "google-translate-api": "^2.3.0",
